@@ -85,6 +85,10 @@ set sidescrolloff=3
 " My mapping
 noremap <c-v> "0p
 noremap <c-l> :NERDTreeToggle<CR>
+inoremap <S-CR> <Esc>
+
+" Floaterm Config
+let g:floaterm_keymap_toggle = '<F1>'
 
 " Brackets
 let g:rainbow_active = 1
