@@ -89,9 +89,9 @@ return require('packer').startup(function()
 	use {
 		'p00f/nvim-ts-rainbow'
 	}
-	use {
-		"folke/which-key.nvim"
-	}
+	-- use {
+	-- 	"folke/which-key.nvim"
+	-- }
 	use {
 		'sindrets/diffview.nvim'
 	}
