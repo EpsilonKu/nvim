@@ -1,47 +1,70 @@
-
 vim.cmd [[packadd packer.nvim]]
 
 vim.cmd [[ autocmd BufWritePost plugins.lua PackerCompile ]]
 
 return require('packer').startup(function()
-	use {'wbthomason/packer.nvim', opt = true}
-
-	use {'blackcauldron7/surround.nvim'}
-	
 	use {
+		'wbthomason/packer.nvim', opt = true
+	}
+	
+-- {{ KeyBinding Stuff
+	use {
+		'blackcauldron7/surround.nvim'
+	}
+	use { -- fast commenting 
+		"terrortylor/nvim-comment",
+		config = require("plugins._comment").config
+	}
+-- }}
+
+-- {{ Interface 
+	use { -- colorscheme
 		'savq/melange',
 		config = require ("plugins._theme").config
 	}
-
-	use {
+	use { -- status line
 		'hoob3rt/lualine.nvim',
 		config = require ("plugins._lualine").config
 	}
-	-- use {
-	-- 	"mhinz/vim-startify",
-	-- 	config = require("plugins._startify").config
-	-- }
-	use {
+	use { -- starting screen
 		'glepnir/dashboard-nvim',
 		config = require("plugins._dashboard").config
 	}
 	use {
+		'romgrk/barbar.nvim',
+		config = require("plugins._barbar").config
+	}
+	use {
+		'kyazdani42/nvim-tree.lua',
+		config = require("plugins._tree").config
+	}
+	use { -- auto pairing
+		"jiangmiao/auto-pairs"
+	}
+	use {
+		'karb94/neoscroll.nvim'
+	}
+-- }}
+
+-- {{ Integration
+	use {
+		'vhyrro/neorg',
+		config = require("plugins._neorg").config
+	}
+	use {
+		'sindrets/diffview.nvim'
+	}
+	use { -- terminal in neovim
 		"voldikss/vim-floaterm",
 		config = require("plugins._floaterm").config
 	}
 	use {
-		"terrortylor/nvim-comment",
-		config = require("plugins._comment").config
+		'kyazdani42/nvim-web-devicons'
 	}
-	use {
-		"jiangmiao/auto-pairs"
-	}
-	-- use {
-	-- 	"neoclide/coc.nvim",
-	-- 	branch = "release",
-	-- 	config = require("plugins._coc").config
-	-- }
-	use {
+-- }}
+
+-- {{ Telescope
+	use { -- file finder
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			{
@@ -54,30 +77,12 @@ return require('packer').startup(function()
 		config = require("plugins._telescope").config
 	}
 	use {
-		'oberblastmeister/neuron.nvim'
-	}
-	use {
-		'vhyrro/neorg',
-		config = require("plugins._neorg").config
-	}
-	use {
 			"nvim-telescope/telescope-fzy-native.nvim",
 			requires = {"romgrk/fzy-lua-native"}
-    }
-	use {
-		'kyazdani42/nvim-web-devicons'
 	}
-	use {
-		'romgrk/barbar.nvim',
-		config = require("plugins._barbar").config
-	}
-	use {
-		'kyazdani42/nvim-tree.lua',
-		config = require("plugins._tree").config
-	}
-	use {
-		'karb94/neoscroll.nvim'
-	}
+-- }}
+
+--{{ Treesitter highlight
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = {
@@ -89,12 +94,9 @@ return require('packer').startup(function()
 	use {
 		'p00f/nvim-ts-rainbow'
 	}
-	-- use {
-	-- 	"folke/which-key.nvim"
-	-- }
-	use {
-		'sindrets/diffview.nvim'
-	}
+-- }}
+
+-- {{ Neovim LSP
 	use {
 		'neovim/nvim-lspconfig',
 		config = require("plugins._lsp").config
@@ -104,35 +106,33 @@ return require('packer').startup(function()
 		config = require("plugins._compe").config
 	}
 	use {
-		'rishabhrd/nvim-lsputils',
-		requires = {
-			'rishabhrd/popfix'
-		},
-		config = require("plugins._lsp-utils").config
-	}
-	use {
-		'folke/lsp-colors.nvim',
-		config = require("plugins._lsp-colors").config
-	}
-	use {
 		'folke/lsp-trouble.nvim',
 		config = require("plugins._lsp-trouble").config
 	}
-	use {
-		'jubnzv/virtual-types.nvim',
-		config = require("plugins._lsp-virtual").config
-	}
+-- }}
+
+--	use {
+--		'rishabhrd/nvim-lsputils',
+--		requires = {
+--			'rishabhrd/popfix'
+--		},
+--		config = require("plugins._lsp-utils").config
+--	}
+--	use {
+--		'folke/lsp-colors.nvim',
+--		config = require("plugins._lsp-colors").config
+--	}
+--	use {
+--		'oberblastmeister/neuron.nvim'
+--	}
+--	use {
+--		'jubnzv/virtual-types.nvim',
+--		config = require("plugins._lsp-virtual").config
+--	}
     -- Plug 'wincent/command-t'
 --    use {'tibabit/vim-templates'}
 --	use {'npxbr/glow.nvim' ,'do': ':GlowInstall'}
-    --  use {'wellle/context.vim'}
-    -- Plug 'prabirshrestha/vim-lsp'
-    -- Plug 'mattn/vim-lsp-settings'
     -- Plug 'vim-scripts/vim-auto-save'
-    -- Plug 'prabirshrestha/asyncomplete.vim'
-    -- Plug 'prabirshrestha/asyncomplete-lsp.vim'
     -- Plug 'prettier/vim-prettier'
-    -- Plug 'ctrlpvim/ctrlp.vim'
-    -- Plug 'knubie/vim-kitty-navigator'
     
   end)
