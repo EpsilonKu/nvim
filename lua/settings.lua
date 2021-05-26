@@ -5,11 +5,18 @@ local function opt(scope, key, value)
   if scope ~= 'o' then scopes['o'][key] = value end
 end
 
+-- {{{ Global Map
+local U = require "utils"
+U.map ("n", "d", '"_d')
+U.map ("v", "d", '"_d')
+
+-- }}}
+
+
 local indent = 4
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
-opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options (for deoplete)
 opt('o', 'wrap', true)                                -- Line of wripping
 opt('o', 'textwidth', 60)                             -- Length of text wripping
 opt('o', 'hidden', true)                              -- Enable modified buffers in background
@@ -25,8 +32,8 @@ opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('o', 'timeoutlen', 0)
 opt('o', 'mouse', 'a')
+opt('o', 'clipboard', 'unnamedplus')
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'listchars', 'eol:↴,tab:»·,trail:.,extends:>,precedes:<')
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
-opt('w', 'wrap', false)
