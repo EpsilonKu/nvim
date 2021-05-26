@@ -6,8 +6,9 @@ function M.config()
 
 	
 --	Move to previous/next
-	U.map ("n", "<C-a>", ":BufferNext <CR>")
-	U.map ("n", "<C-s>", ":BufferPrevious <CR>")
+	U.map ("", "<C-s>", ":BufferNext <CR>")
+	U.map ("", "<C-a>", ":BufferPrevious <CR>")
+
 	
 --	Re-order to previous/next
 	U.map ("n", "<C-<>",":BufferMovePrevious <CR>")
