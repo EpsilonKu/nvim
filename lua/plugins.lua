@@ -1,23 +1,26 @@
 vim.cmd [[packadd packer.nvim]]
 
-vim.cmd [[ autocmd BufWritePost plugins.lua PackerCompile ]]
+vim.cmd [[ autocmd bufwritepost plugins.lua packercompile ]]
 
 return require('packer').startup(function()
 	use {
 		'wbthomason/packer.nvim', opt = true
 	}
 	
--- {{ KeyBinding Stuff
+-- {{ keybinding stuff
 	use {
 		'blackcauldron7/surround.nvim'
 	}
-	use { -- fast commenting 
+	use { -- commenting 
 		"terrortylor/nvim-comment",
 		config = require("plugins._comment").config
 	}
+	use {
+		"pianocomposer321/yabs.nvim"
+	}
 -- }}
 
--- {{ Interface 
+-- {{ interface 
 	use { -- colorscheme
 		'savq/melange',
 		config = require ("plugins._theme").config
@@ -46,11 +49,11 @@ return require('packer').startup(function()
 	}
 -- }}
 
--- {{ Integration
-	use {
-		'vhyrro/neorg',
-		config = require("plugins._neorg").config
-	}
+-- {{ integration
+--	use {
+--		'vhyrro/neorg',
+--		config = require("plugins._neorg").config
+--	}
 	use {
 		'sindrets/diffview.nvim'
 	}
@@ -59,11 +62,17 @@ return require('packer').startup(function()
 		config = require("plugins._floaterm").config
 	}
 	use {
+		"pianocomposer321/consolation.nvim"
+	}
+	use {
 		'kyazdani42/nvim-web-devicons'
+	}
+	use {
+		'tpope/vim-dispatch'
 	}
 -- }}
 
--- {{ Telescope
+-- {{ telescope
 	use { -- file finder
 		"nvim-telescope/telescope.nvim",
 		requires = {
@@ -82,12 +91,12 @@ return require('packer').startup(function()
 	}
 -- }}
 
---{{ Treesitter highlight
+--{{ treesitter highlight
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = {
-			':TSUpdate',
-			':TSInstall cpp'
+			':tsupdate',
+			':tsinstall cpp'
 		},
 		config = require("plugins._treesitter").config
 	}
@@ -96,28 +105,31 @@ return require('packer').startup(function()
 	}
 -- }}
 
--- {{ Neovim LSP
+-- {{ neovim lsp
 	use {
 		'neovim/nvim-lspconfig',
 		config = require("plugins._lsp").config
+	}
+	use {
+		'ahmedkhalf/lsp-rooter.nvim'
 	}
 	use {
 		'hrsh7th/nvim-compe',
 		config = require("plugins._compe").config
 	}
 	use {
-		'folke/lsp-trouble.nvim',
+		'folke/todo-comments.nvim',
+		requires = {
+		'folke/trouble.nvim'
+		},
 		config = require("plugins._lsp-trouble").config
+	}
+	use {
+		'mfussenegger/nvim-jdtls'
+	--	config = require("plugins._lsp").start_jdtls
 	}
 -- }}
 
---	use {
---		'rishabhrd/nvim-lsputils',
---		requires = {
---			'rishabhrd/popfix'
---		},
---		config = require("plugins._lsp-utils").config
---	}
 --	use {
 --		'folke/lsp-colors.nvim',
 --		config = require("plugins._lsp-colors").config
@@ -125,13 +137,9 @@ return require('packer').startup(function()
 --	use {
 --		'oberblastmeister/neuron.nvim'
 --	}
---	use {
---		'jubnzv/virtual-types.nvim',
---		config = require("plugins._lsp-virtual").config
---	}
     -- Plug 'wincent/command-t'
---    use {'tibabit/vim-templates'}
---	use {'npxbr/glow.nvim' ,'do': ':GlowInstall'}
+	--use {'tibabit/vim-templates'}
+	--	use {'npxbr/glow.nvim' ,'do': ':GlowInstall'}
     -- Plug 'vim-scripts/vim-auto-save'
     -- Plug 'prettier/vim-prettier'
     
