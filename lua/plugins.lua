@@ -47,6 +47,12 @@ return require('packer').startup(function()
 	use {
 		'karb94/neoscroll.nvim'
 	}
+	use {
+		"numtostr/FTerm.nvim",
+		config = function()
+			require("FTerm").setup()
+		end
+	}
 -- }}
 
 -- {{ integration
@@ -69,6 +75,10 @@ return require('packer').startup(function()
 	}
 	use {
 		'tpope/vim-dispatch'
+	}
+	use {
+		'folke/which-key.nvim',
+		config = require("plugins._whichkey").config
 	}
 -- }}
 
@@ -129,7 +139,6 @@ return require('packer').startup(function()
 	--	config = require("plugins._lsp").start_jdtls
 	}
 -- }}
-
 --	use {
 --		'folke/lsp-colors.nvim',
 --		config = require("plugins._lsp-colors").config

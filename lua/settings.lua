@@ -12,6 +12,10 @@ U.map ("v", "d", '"_d')
 
 -- }}}
 
+vim.cmd(([[
+	set autoindent smartindent
+]]))
+
 
 local indent = 4
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
@@ -33,6 +37,7 @@ opt('o', 'wildmode', 'list:longest')                  -- Command-line completion
 opt('o', 'timeoutlen', 0)
 opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
+opt('o', 'pastetoggle', '<F10>')
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'listchars', 'eol:↴,tab:»·,trail:.,extends:>,precedes:<')
 opt('w', 'number', true)                              -- Print line number
