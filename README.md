@@ -2,24 +2,26 @@
   Collections of neovim's config. 
 
 ### Language Support
- - [*] LSP Basic Support
+ - [x] LSP Basic Support
  - [ ] Vala IDE
- - [ ] C++ IDE
- - [ ] Java IDE
+ - [x] C++ IDE
+ - [x] Java IDE
 
 ### IDE functionality
 
- - [ ] Run & Debug
+ - [x] Run & Debug
  - [ ] Project Structure
- - [ ] Building system functions
- - [ ] Language documentation support
+ - [x] Building system functions
+ - [ ] Cmake poggers
 
 ### UI
- - [ ] UI search and replace 
+ - [x] UI search and replace 
  - [ ] Emigration to FTerm
 
 ### Additional
 
 ### Plugins 
+- [ ] What about refactor keys
 
 ### GUI 
+- [ ] Integrate Goneovim
