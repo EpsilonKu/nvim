@@ -1,6 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
-
-vim.cmd [[ autocmd bufwritepost plugins.lua packercompile ]]
+vim.cmd [[ autocmd bufwritepost plugins.lua PackerCompile ]]
 
 return require('packer').startup(function()
 	use {
@@ -8,6 +7,10 @@ return require('packer').startup(function()
 	}
 	
 -- {{ keybinding stuff
+	use {
+		'folke/which-key.nvim',
+		config = require("plugins._whichkey").config
+	}
 	use {
 		'blackcauldron7/surround.nvim'
 	}
@@ -18,12 +21,21 @@ return require('packer').startup(function()
 	use {
 		"pianocomposer321/yabs.nvim"
 	}
+	use {
+		"mhartington/formatter.nvim",
+		config = require("plugins._formatter").config
+	}
 -- }}
 
 -- {{ interface 
 	use { -- colorscheme
 		'savq/melange',
 		config = require ("plugins._theme").config
+	}
+	use {
+		'lukas-reineke/indent-blankline.nvim',
+		tree = 'lua',
+		config = require ("plugins._indent").config
 	}
 	use { -- status line
 		'hoob3rt/lualine.nvim',
@@ -41,6 +53,10 @@ return require('packer').startup(function()
 		'kyazdani42/nvim-tree.lua',
 		config = require("plugins._tree").config
 	}
+	use {
+		'kevinhwang91/rnvimr',
+		config = require("plugins._ranger").config
+	}
 	use { -- auto pairing
 		"jiangmiao/auto-pairs"
 	}
@@ -48,10 +64,7 @@ return require('packer').startup(function()
 		'karb94/neoscroll.nvim'
 	}
 	use {
-		"numtostr/FTerm.nvim",
-		config = function()
-			require("FTerm").setup()
-		end
+		"~/bin/FTerm.nvim"
 	}
 -- }}
 
@@ -60,6 +73,9 @@ return require('packer').startup(function()
 --		'vhyrro/neorg',
 --		config = require("plugins._neorg").config
 --	}
+	use {
+		'chrisbra/recover.vim'
+	}
 	use {
 		'sindrets/diffview.nvim'
 	}
@@ -75,10 +91,6 @@ return require('packer').startup(function()
 	}
 	use {
 		'tpope/vim-dispatch'
-	}
-	use {
-		'folke/which-key.nvim',
-		config = require("plugins._whichkey").config
 	}
 -- }}
 
@@ -135,8 +147,23 @@ return require('packer').startup(function()
 		config = require("plugins._lsp-trouble").config
 	}
 	use {
+		'rishabhrd/nvim-lsputils',
+		requires = {
+		'rishabhrd/popfix'
+		},
+		config = require("plugins._lsp-utils").config
+	}
+	use {
 		'mfussenegger/nvim-jdtls'
-	--	config = require("plugins._lsp").start_jdtls
+		-- config = require("plugins._lsp").start_jdtls
+	}
+	use {
+		'rcarriga/nvim-dap-ui',
+		requires = {
+		'mfussenegger/nvim-dap',
+		'theHamsta/nvim-dap-virtual-text'
+		},
+		config = require("plugins._dap").config
 	}
 -- }}
 --	use {

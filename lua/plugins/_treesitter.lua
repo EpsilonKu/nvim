@@ -12,7 +12,7 @@ function M.config()
 			enable = true,
 			disable = {}
 		},
-		 indent = {
+		indent = {
 			 enable = true,
 		}
 	}

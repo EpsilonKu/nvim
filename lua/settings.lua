@@ -9,13 +9,11 @@ end
 local U = require "utils"
 U.map ("n", "d", '"_d')
 U.map ("v", "d", '"_d')
-
 -- }}}
 
 vim.cmd(([[
 	set autoindent smartindent
 ]]))
-
 
 local indent = 4
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
@@ -42,3 +40,4 @@ opt('w', 'list', true)                                -- Show some invisible cha
 opt('w', 'listchars', 'eol:↴,tab:»·,trail:.,extends:>,precedes:<')
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
+

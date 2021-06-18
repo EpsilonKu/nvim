@@ -22,4 +22,4 @@ vim.cmd 'colorscheme melange'
 -- Vanilla Config
 require "settings"
 require "plugins"
-
+require "files"

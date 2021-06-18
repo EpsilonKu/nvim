@@ -1,17 +1,34 @@
 local M = {}
 
 function M.config()
-    local U = require "utils"
-    local finders = require "telescope.builtin"
-    local actions = require "telescope.actions"
-    local sorters = require "telescope.sorters"
+	local U = require "utils"
+	local finders = require "telescope.builtin"
+	local actions = require "telescope.actions"
+	local sorters = require "telescope.sorters"
+	local wk = require("which-key")
+
+	local previewers = require('telescope.previewers')
+	local putils = require('telescope.previewers.utils')
+	local pfiletype = require('plenary.filetype')
+	local new_maker = function(filepath, bufnr, opts)
+		opts = opts or {}
+		if opts.use_ft_detect == nil then
+			local ft = pfiletype.detect(filepath)
+			-- Here for example you can say: if ft == "xyz" then this_regex_highlighing else nothing end
+			opts.use_ft_detect = false
+			putils.regex_highlighter(bufnr, ft)
+		end
+		previewers.buffer_previewer_maker(filepath, bufnr, opts)
+	end
 
     require("telescope").setup(
         {
             defaults = {
+    			buffer_previewer_maker = new_maker, -- custom preview which will optimize telescope
                 prompt_position = "top",
                 prompt_prefix = " ❯ ",
                 sorting_strategy = "ascending",
+				file_ignore_patterns = {"node_modules", "target", "dependencies"},
                 mappings = {
                     i = {
                         ["<ESC>"] = actions.close,
@@ -44,25 +61,16 @@ function M.config()
         finders[fn]()
     end
 
-    -- Ctrl-p = fuzzy finder
---    U.map("n", "<A-f>", "<CMD>lua TelescopeOpen('find_files')<CR>")
-
-    U.map("n", "<A-f>", ":Telescope find_files theme=get_dropdown<CR>")
-
-    -- Fuzzy find active buffers
-    U.map("n", "'b", "<CMD>lua TelescopeOpen('buffers')<CR>")
-
-    -- Search for string
-    U.map("n", "'r", "<CMD>lua TelescopeOpen('live_grep')<CR>")
-
-    -- Fuzzy find history buffers
-    U.map("n", "'i", "<CMD>lua TelescopeOpen('oldfiles')<CR>")
-
-    -- Fuzzy find changed files in git
-    U.map("n", "'c", "<CMD>lua TelescopeOpen('git_status')<CR>")
-
-    -- Fuzzy find register
-    U.map("n", "'g", "<CMD>lua TelescopeOpen('registers')<CR>")
+	wk.register({
+	["f"] = {
+			name = "+Telescope",
+			a = { ":Telescope find_files theme=get_dropdown<CR>", "  Telescope find file" },
+			b = { ":lua TelescopeOpen('buffers')<CR>", " ﬘ Telescope list buffer" },
+			c = { ":lua TelescopeOpen('live_grep')<CR>", "  Telescope live grep" },
+			d = { "<CMD>lua TelescopeOpen('oldfiles')<CR>", "  Telescope buffer history" },
+			e = { "<CMD>lua TelescopeOpen('registers')<CR>", "  Telescope register list" },
+		}
+	})
 end
 
 return M
