@@ -61,6 +61,9 @@ return require('packer').startup(function()
 		"jiangmiao/auto-pairs"
 	}
 	use {
+		"windwp/nvim-ts-autotag"
+	}
+	use {
 		'karb94/neoscroll.nvim'
 	}
 	use {
