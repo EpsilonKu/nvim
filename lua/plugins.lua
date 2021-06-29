@@ -67,7 +67,7 @@ return require('packer').startup(function()
 		'karb94/neoscroll.nvim'
 	}
 	use {
-		"~/bin/FTerm.nvim"
+		"epsilonku/fterm.nvim"
 	}
 -- }}
 
@@ -158,7 +158,10 @@ return require('packer').startup(function()
 	}
 	use {
 		'mfussenegger/nvim-jdtls'
-		-- config = require("plugins._lsp").start_jdtls
+	}
+	use {
+		'folke/lsp-colors.nvim',
+		config = require("plugins._lsp-colors").config
 	}
 	use {
 		'rcarriga/nvim-dap-ui',
@@ -169,17 +172,5 @@ return require('packer').startup(function()
 		config = require("plugins._dap").config
 	}
 -- }}
---	use {
---		'folke/lsp-colors.nvim',
---		config = require("plugins._lsp-colors").config
---	}
---	use {
---		'oberblastmeister/neuron.nvim'
---	}
-    -- Plug 'wincent/command-t'
-	--use {'tibabit/vim-templates'}
-	--	use {'npxbr/glow.nvim' ,'do': ':GlowInstall'}
-    -- Plug 'vim-scripts/vim-auto-save'
-    -- Plug 'prettier/vim-prettier'
     
   end)
