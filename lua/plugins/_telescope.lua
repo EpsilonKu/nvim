@@ -25,7 +25,6 @@ function M.config()
         {
             defaults = {
     			buffer_previewer_maker = new_maker, -- custom preview which will optimize telescope
-                prompt_position = "top",
                 prompt_prefix = " ❯ ",
                 sorting_strategy = "ascending",
 				file_ignore_patterns = {"node_modules", "target", "dependencies"},

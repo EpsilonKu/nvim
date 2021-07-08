@@ -34,7 +34,6 @@ return require('packer').startup(function()
 	}
 	use {
 		'lukas-reineke/indent-blankline.nvim',
-		tree = 'lua',
 		config = require ("plugins._indent").config
 	}
 	use { -- status line
@@ -158,10 +157,6 @@ return require('packer').startup(function()
 	}
 	use {
 		'mfussenegger/nvim-jdtls'
-	}
-	use {
-		'folke/lsp-colors.nvim',
-		config = require("plugins._lsp-colors").config
 	}
 	use {
 		'rcarriga/nvim-dap-ui',
