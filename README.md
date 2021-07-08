@@ -1,27 +1,7 @@
-# Epsomite NeoVim 
-  Collections of neovim's config. 
+# Epsilon's cringe config for Neovim. (Epsomite) 
+  Just another config on Lua.
 
-### Language Support
- - [x] LSP Basic Support
- - [ ] Vala IDE
- - [x] C++ IDE
- - [x] Java IDE
 
-### IDE functionality
+	## Setup
+	Copy project to ~/.config/nvim/.
 
- - [x] Run & Debug
- - [ ] Project Structure
- - [x] Building system functions
- - [ ] Cmake poggers
-
-### UI
- - [x] UI search and replace 
- - [ ] Emigration to FTerm
-
-### Additional
-
-### Plugins 
-- [ ] What about refactor keys
-
-### GUI 
-- [ ] Integrate Goneovim
