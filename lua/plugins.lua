@@ -25,6 +25,9 @@ return require('packer').startup(function()
 		"mhartington/formatter.nvim",
 		config = require("plugins._formatter").config
 	}
+	use {
+		"sbdchd/neoformat"
+	}
 -- }}
 
 -- {{ interface 
