@@ -119,8 +119,7 @@ return require('packer').startup(function()
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = {
-			':tsupdate',
-			':tsinstall cpp'
+			':TSUpdate'
 		},
 		config = require("plugins._treesitter").config
 	}
@@ -162,7 +161,8 @@ return require('packer').startup(function()
 		'rcarriga/nvim-dap-ui',
 		requires = {
 		'mfussenegger/nvim-dap',
-		'theHamsta/nvim-dap-virtual-text'
+		'theHamsta/nvim-dap-virtual-text',
+		'nvim-telescope/telescope-dap.nvim'
 		},
 		config = require("plugins._dap").config
 	}

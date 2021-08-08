@@ -21,12 +21,15 @@ end
 local function jdtls_start()
 	-- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
 	local config = {}
+	local home = os.getenv('HOME')
+	local workspace_folder = home .. "/.workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+
 	config.init_options = {
 		bundles = {
-			vim.fn.glob("$HOME/.config/nvim/etc/dependencies/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.32.0.jar")
+			vim.fn.glob("~/.local/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
 		}
 	}
-	config.cmd = {'java-lsp.sh'}
+	config.cmd = {'jdtls.sh', workspace}
 	config.root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml'})
 	config.on_attach = jdtls_on_attach
 	require ('jdtls').start_or_attach (config)

@@ -19,8 +19,6 @@ local indent = 4
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
-opt('o', 'wrap', true)                                -- Line of wripping
-opt('o', 'textwidth', 60)                             -- Length of text wripping
 opt('o', 'hidden', true)                              -- Enable modified buffers in background
 opt('o', 'ignorecase', true)                          -- Ignore case
 opt('o', 'joinspaces', false)                         -- No double spaces with join after a dot
