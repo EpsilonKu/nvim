@@ -16,5 +16,6 @@ function M.config()
 			 enable = true,
 		}
 	}
+	require('nvim-ts-autotag').setup()
 end
 return M
