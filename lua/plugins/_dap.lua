@@ -8,8 +8,8 @@ function M.config()
 
 	require("dapui").setup({
 		icons = {
-			expanded = "»",
-			collapsed = "↴"
+			expanded = "↴",
+			collapsed = "»"
 		},
 	mappings = {
     -- Use a table to apply multiple mappings
@@ -37,7 +37,8 @@ function M.config()
 	tray = {
 		open_on_start = true,
 		elements = {
-			"scopes"
+				{id = "scopes", size= 0.4},
+				{id = "stacks", size= 0.6}
 		},
 		height = 10,
 		position = "bottom" -- Can be "bottom" or "top"
@@ -80,7 +81,12 @@ function M.config()
 
 	vim.g.dap_virtual_text = true
 
-	dap.defaults.fallback.terminal_win_cmd = ":lua require('FTerm').open_empty()"
+	dap.defaults.fallback.external_terminal = {
+    command = '/usr/bin/kitty';
+		args = {'-e'};
+	}
+	  dap.defaults.fallback.force_external_terminal = true
+	-- dap.defaults.fallback.terminal_win_cmd = ":lua require('FTerm').open_empty()"
 
     -- nnoremap <silent> <f5> :lua require'dap'.continue()<cr>
     -- nnoremap <silent> <f10> :lua require'dap'.step_over()<cr>
