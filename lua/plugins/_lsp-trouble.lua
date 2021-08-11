@@ -4,7 +4,7 @@ local M = {}
 function M.config()
 	local g = vim.g
 	require("trouble").setup {
-		auto_open = true, -- automatically open the list when you have diagnostics
+		auto_open = false, -- automatically open the list when you have diagnostics
 		auto_preview = false, -- automatyically preview the location of the diagnostic. <esc> to close preview and go back to last window
 		auto_fold = false, -- automatically fold a file trouble list at creation
 		auto_close = false,
