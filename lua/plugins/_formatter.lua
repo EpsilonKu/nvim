@@ -1,50 +1,16 @@
 local M = {}
 
 function M.config()
-  require("formatter").setup(
-    {
-      logging = false,
-      filetype = {
-        javascript = {
-          -- prettier
-          function()
-            return {
-              exe = "prettier",
-              args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
-              stdin = true
-            }
-          end
-        },
-        lua = {
-          -- luafmt
-          function()
-            return {
-              exe = "luafmt",
-              args = {"--indent-count", 2, "--stdin"},
-              stdin = true
-            }
-          end
-        },
-        java = {
-          function()
-            return {
-              exe = "google-java-format",
-              args = { vim.api.nvim_buf_get_name(0)},
-              stdin = true
-            }
-          end
-        }
-        -- html = {
-        -- 	function ()
-        -- 		return {
-        -- 			exe - "tidy",
-        -- 			args = {""},
-        -- 			stdin = true
-        -- 		}
-        -- }
-      }
-    }
-  )
+	-- vim.g.neoformat_javascript_prettier = {
+	--         exe = "prettier",
+	--         args = {"--print-width","80", "--tab-width","4", "--use-tabs", "--semi"},
+	-- }
+	vim.g.neoformat_enabled_java = { "astyle" }
+	vim.g.neoformat_enabled_javascript = { "prettier" }
+	vim.g.neoformat_enabled_html = { "prettier" }
+	vim.g.neoformat_basic_format_retab = 1
+
+
 end
 
 return M

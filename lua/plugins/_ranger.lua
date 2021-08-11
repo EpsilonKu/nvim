@@ -13,7 +13,7 @@ function M.config()
 			c = { ":lua require('dap.ui.widgets').hover().close()<CR>", "  Debug Float Close" },
 			d = { ":lua require'dap'.toggle_breakpoint()<CR>", "  Toggle Breakpoint" },
 			e = { ":lua require'dap'.continue()<CR>", "  Debug Continue"},
-			l = { ":Neoformat astyle<CR>", "  Format java code" }
+			l = { ":Neoformat<CR>", "  Format code" }
 		}
 	})
 end
