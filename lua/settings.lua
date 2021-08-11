@@ -9,6 +9,10 @@ end
 local U = require "utils"
 U.map ("n", "d", '"_d')
 U.map ("v", "d", '"_d')
+U.map ("n", ";", "l")
+U.map ("n", "l", "k")
+U.map ("n", "k", "j")
+U.map ("n", "j", "h")
 -- }}}
 
 vim.cmd(([[
@@ -31,6 +35,7 @@ opt('o', 'splitright', true)                          -- Put new windows right o
 opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('o', 'timeoutlen', 0)
+opt('o', 'encoding', 'UTF-8')
 opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
 opt('o', 'pastetoggle', '<F10>')
