@@ -9,10 +9,16 @@ end
 local U = require "utils"
 U.map ("n", "d", '"_d')
 U.map ("v", "d", '"_d')
+U.map ("n", "x", '"_x')
+U.map ("v", "x", '"_x')
 U.map ("n", ";", "l")
 U.map ("n", "l", "k")
 U.map ("n", "k", "j")
 U.map ("n", "j", "h")
+U.map ("v", ";", "l")
+U.map ("v", "l", "k")
+U.map ("v", "k", "j")
+U.map ("v", "j", "h")
 -- }}}
 
 vim.cmd(([[
