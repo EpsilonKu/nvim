@@ -60,7 +60,7 @@ return require('packer').startup(function()
 		config = require("plugins._ranger").config
 	}
 	use { -- auto pairing
-		"jiangmiao/auto-pairs"
+		"windwp/nvim-autopairs"
 	}
 	use {
 		"windwp/nvim-ts-autotag"
@@ -135,6 +135,10 @@ return require('packer').startup(function()
 	use {
 		'neovim/nvim-lspconfig',
 		config = require("plugins._lsp").config
+	}
+	use {
+		'ray-x/lsp_signature.nvim'
+
 	}
 	use {
 		'ahmedkhalf/lsp-rooter.nvim'
