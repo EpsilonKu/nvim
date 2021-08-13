@@ -97,9 +97,6 @@ return require('packer').startup(function()
 	use {
 		'kyazdani42/nvim-web-devicons'
 	}
-	use {
-		'tpope/vim-dispatch'
-	}
 -- }}
 
 -- {{ telescope
