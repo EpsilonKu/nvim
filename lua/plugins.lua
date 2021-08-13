@@ -72,7 +72,8 @@ return require('packer').startup(function()
 		"epsilonku/fterm.nvim"
 	}
 	use {
-		"windwp/nvim-spectre"
+		"windwp/nvim-spectre",
+		config = require("plugins._spectre").config
 	}
 -- }}
 
