@@ -49,7 +49,7 @@ opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
 opt('o', 'pastetoggle', '<F10>')
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
-opt('w', 'listchars', 'eol:↴,tab:»·,trail:.,extends:>,precedes:<')
+-- opt('w', 'listchars', 'eol:↴,tab:»·,trail:.,extends:>,precedes:<')
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
 
