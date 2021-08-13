@@ -71,7 +71,6 @@ require'lspconfig'.html.setup {
 }
 
 
-
 	-- require'lspconfig'.clangd.setup{}
 		-- require('jdtls').start_or_attach({
 		-- cmd = {'java-lsp.sh'}, 

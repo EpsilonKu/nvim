@@ -65,7 +65,18 @@ function M.init()
 			r = {":lua require('jdtls').code_action(false, 'refactor')<CR>", " Code refactor"},
 			i = {":lua require'jdtls'.organize_imports()<CR>", " Organize imports"},
 			m = {":lua require('jdtls').extract_method(true)<CR>", "Organize methods"}
-		}
+		},
+		["["] = {
+			name = "+Actions",
+			d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Goto definition"},
+			u = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declarations"},
+			i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation"},
+			t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition"},
+			r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Type rename"},
+			e = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
+			s = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show diagnostic"},
+			f = {":lua vim.lsp.buf.formatting()<CR>", "Format code with lsp"}
+			}
 	})
 	wk.register({
 		["<leader>j"] = {
