@@ -71,6 +71,9 @@ return require('packer').startup(function()
 	use {
 		"epsilonku/fterm.nvim"
 	}
+	use {
+		"windwp/nvim-spectre"
+	}
 -- }}
 
 -- {{ integration

@@ -16,6 +16,12 @@ local function jdtls_on_attach()
 	require('jdtls.setup').add_commands ()
 	require('jdtls').setup_dap()
 	require('jdtls.dap').setup_dap_main_class_configs()
+	require ('lsp_signature').on_attach({
+		bind = true, -- This is mandatory, otherwise border config won't get registered.
+      	handler_opts = {
+        	border = "single"
+      	}
+	})  
 end
 
 local function jdtls_start()
@@ -56,8 +62,26 @@ function M.init()
 		["<leader>c"] = {
 			name = "+Code Action",
 			c = {":lua require('jdtls').code_action()<CR>", " Code action"},
-			r = {":lua require('jdtls').code_action(false, 'refactor')<CR>", " Code refactor"}
+			r = {":lua require('jdtls').code_action(false, 'refactor')<CR>", " Code refactor"},
+			i = {":lua require'jdtls'.organize_imports()<CR>", " Organize imports"},
+			m = {":lua require('jdtls').extract_method(true)<CR>", "Organize methods"}
 		}
+	})
+	wk.register({
+		["<leader>j"] = {
+			name = "+Java",
+			b = { "<CMD>lua require('filetype._java').build()<CR>", "  Java Build Spring" },
+			d = { ":lua require'dap'.continue()<CR>", "  Java Debug Run"}
+		},
+		["<leader>c"] = {
+			name = "+Code Action",
+			c = {"<Esc><Cmd>lua require('jdtls').code_action(true)<CR>", " Code action"},
+			i = {":lua require'jdtls'.organize_imports()<CR>", " Organize imports"},
+			m = {":lua require('jdtls').extract_method(true)<CR>", "Organize methods"}
+		}
+	},
+	{
+		mode = "v"
 	})
 
 --	command! -buffer JdtCompile lua require('jdtls').compile()
