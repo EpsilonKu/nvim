@@ -42,7 +42,8 @@ function M.config()
                     }
                 },
                 file_sorter = sorters.get_fzy_sorter,
-                generic_sorter = sorters.get_fzy_sorter
+                generic_sorter = sorters.get_fzy_sorter,
+				path_display = {shorten = 5 },
             },
             extensions = {
                 fzy_native = {
@@ -61,16 +62,6 @@ function M.config()
         finders[fn]()
     end
 
-	wk.register({
-	["f"] = {
-			name = "+Telescope",
-			a = { ":Telescope find_files theme=get_dropdown<CR>", "  Telescope find file" },
-			b = { ":lua TelescopeOpen('buffers')<CR>", " ﬘ Telescope list buffer" },
-			c = { ":lua TelescopeOpen('live_grep')<CR>", "  Telescope live grep" },
-			d = { "<CMD>lua TelescopeOpen('oldfiles')<CR>", "  Telescope buffer history" },
-			e = { "<CMD>lua TelescopeOpen('registers')<CR>", "  Telescope register list" },
-		}
-	})
 end
 
 return M
