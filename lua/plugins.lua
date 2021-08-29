@@ -32,7 +32,7 @@ return require('packer').startup(function()
 
 -- {{ interface 
 	use { -- colorscheme
-		'savq/melange',
+		'bluz71/vim-moonfly-colors',
 		config = require ("plugins._theme").config
 	}
 	use {
@@ -130,6 +130,12 @@ return require('packer').startup(function()
 	use {
 		'p00f/nvim-ts-rainbow'
 	}
+use {
+	"SmiteshP/nvim-gps"
+}
+use {
+	"David-Kunz/treesitter-unit"
+}
 -- }}
 
 -- {{ neovim lsp
@@ -138,11 +144,25 @@ return require('packer').startup(function()
 		config = require("plugins._lsp").config
 	}
 	use {
-		'ray-x/lsp_signature.nvim'
-
+		"onsails/lspkind-nvim",
 	}
 	use {
-		'ahmedkhalf/lsp-rooter.nvim'
+		'ray-x/lsp_signature.nvim'
+	}
+
+	use {'ray-x/navigator.lua', 
+		requires = {
+			'ray-x/guihua.lua', 
+			run = 'cd lua/fzy && make'
+		},
+		config = require("plugins._navigator").config
+	}
+	use {
+		'nvim-lua/lsp-status.nvim'
+	}
+
+	use {
+		'ahmedkhalf/project.nvim'
 	}
 	use {
 		'hrsh7th/nvim-compe',
@@ -155,13 +175,13 @@ return require('packer').startup(function()
 		},
 		config = require("plugins._lsp-trouble").config
 	}
-	use {
-		'rishabhrd/nvim-lsputils',
-		requires = {
-		'rishabhrd/popfix'
-		},
-		config = require("plugins._lsp-utils").config
-	}
+	-- use {
+	-- 	'rishabhrd/nvim-lsputils',
+	-- 	requires = {
+	-- 	'rishabhrd/popfix'
+	-- 	},
+	-- 	config = require("plugins._lsp-utils").config
+	-- }
 	use {
 		'mfussenegger/nvim-jdtls'
 	}
