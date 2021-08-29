@@ -5,10 +5,11 @@ function M.config()
 	local g = vim.g
 
 	g.nvim_tree_side = "left"
-	g.nvim_tree_width = 35
+	g.nvim_tree_width = 60
 	g.nvim_tree_auto_ignore_ft = { 'dashboard' }
 	g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
     g.nvim_tree_auto_close = 1
+	g.nvim_tree_auto_open = 0
 
     g.nvim_tree_follow = 1
 
