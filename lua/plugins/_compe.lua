@@ -3,7 +3,12 @@ local M = {}
 
 function M.config()
 	local g = vim.g
-require('nvim-autopairs').setup{}
+require('nvim-autopairs').setup
+  {
+      disable_filetype = {"TelescopePrompt", "guihua", "clap_input"},
+      autopairs = {enable = true},
+      check_ts = false
+    }
 
 	require'compe'.setup({
 	enabled = true,
@@ -52,7 +57,6 @@ _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
   else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
 end
@@ -66,14 +70,14 @@ require("nvim-autopairs.completion.compe").setup({
   map_complete = true, -- it will auto insert `(` after select function or method item
   auto_select = false,  -- auto select first item
 })
-vim.api.nvim_set_keymap("i", "<CR>", [[compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))]], { expr = true })
-vim.cmd('autocmd User CompeConfirmDone lua vim.lsp.buf.signature_help()')
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", { expr = true })
+-- vim.cmd('autocmd User CompeConfirmDone lua vim.lsp.buf.signature_help()')
 -- vim.api.nvim_set_keymap("i", "<C-Space>", 'compe#complete()', {expr = true})
 -- vim.api.nvim_set_keymap("i", "<CR>", 'compe#confirm(luaeval("require "nvim-autopairs".autopairs_cr()', {expr = true})
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 -- vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 -- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})

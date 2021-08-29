@@ -17,9 +17,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 -- }}
 
-vim.cmd 'colorscheme melange'
-
 -- Vanilla Config
 require "settings"
 require "plugins"
 require "files"
+require "mappings"
