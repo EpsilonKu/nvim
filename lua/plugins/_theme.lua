@@ -1,8 +1,11 @@
 local M = {}
 
 function M.config()
-	local g = vim.g
-vim.cmd 'colorscheme melange'
+-- vim.g.rose_pine_variant = 'moon'
+vim.cmd 'colorscheme moonfly'
+-- vim.g.material_style = "lighter"
+-- require('material').set()
+
 end
 
 return M
