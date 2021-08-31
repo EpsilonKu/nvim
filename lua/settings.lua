@@ -22,7 +22,7 @@ U.map ("v", "j", "h")
 U.map ("i", "<C-S-V>", "<Esc>pa")
 U.map ("n", "<C-S-V>", "p")
 U.map ("v", "<C-S-V>", "p")
-U.map ("n", "<Esc>", ":lua ListView.close()<CR>")
+-- U.map ("n", "<Esc>", ":lua ListView.close()<CR>")
 -- }}}
 
 vim.cmd(([[

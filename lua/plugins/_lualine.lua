@@ -27,6 +27,7 @@ function M.config()
    		indicator_info = 'i',
     	indicator_hint = '?',
     	indicator_ok = '',
+		status_symbol = ''
 	};
 	-- config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
 	lsp_status.config(config);

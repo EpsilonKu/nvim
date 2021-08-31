@@ -149,18 +149,19 @@ use {
 	use {
 		'ray-x/lsp_signature.nvim'
 	}
-
-	use {'ray-x/navigator.lua', 
-		requires = {
-			'ray-x/guihua.lua', 
-			run = 'cd lua/fzy && make'
-		},
-		config = require("plugins._navigator").config
+	use {
+		'glepnir/lspsaga.nvim'
 	}
+	-- use {'ray-x/navigator.lua', 
+	-- 	requires = {
+	-- 		'ray-x/guihua.lua', 
+	-- 		run = 'cd lua/fzy && make'
+	-- 	},
+	-- 	config = require("plugins._navigator").config
+	-- }
 	use {
 		'nvim-lua/lsp-status.nvim'
 	}
-
 	use {
 		'ahmedkhalf/project.nvim'
 	}

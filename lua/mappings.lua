@@ -18,7 +18,7 @@
 			name = "+Debugger",
 			w = {":lua vim.lsp.buf.workspace_symbol()<CR>", " Workspace symbol"},
 			d = {":lua vim.lsp.buf.document_symbol()<CR>", " Document symbol"},
-			r = {":lua vim.lsp.buf.rename()<CR>", " Variable rename"},
+			r = {":lua require('lspsaga.rename').rename()<CR>", " Variable rename"},
 			d = {":lua require('navigator.diagnostics').show_diagnostic()<CR>", " Show all buffer diagnostic"},
 			f = {":lua vim.lsp.buf.formatting()<CR>", "Format code with lsp"}
 		},
@@ -43,14 +43,22 @@
 	wk.register({
 	["e"] = {
 			name = "+Lsp Actions",
-			r = {":lua vim.lsp.buf.references()<CR>", " References"},
-			s = {":lua vim.lsp.buf.signature_help()<CR>", " Signature help"},
-			d = {":lua vim.lsp.buf.definition()<CR>", " Definition"},
-			i = {":lua vim.lsp.buf.implementation()<CR>", " Implementation"},
-			h = {":lua vim.lsp.buf.hover({ popup_opts = { border = single }})<CR>", " Hover documentation"},
-			a = {":lua vim.lsp.buf.code_action()<CR>", " Code action"},
-			t = {":lua vim.lsp.buf.type_definition()<CR>", " Type definition"},
-			s = {":lua vim.lsp.diagnostic.show_line_diagnostics( { border = 'single' })<CR>", " Show diagnostic line"},
+			-- r = {":lua vim.lsp.buf.references()<CR>", " References"},
+			-- s = {":lua vim.lsp.buf.signature_help()<CR>", " Signature help"},
+			-- d = {":lua vim.lsp.buf.definition()<CR>", " Definition"},
+			-- i = {":lua vim.lsp.buf.implementation()<CR>", " Implementation"},
+			-- h = {":lua vim.lsp.buf.hover({ popup_opts = { border = single }})<CR>", " Hover documentation"},
+			-- a = {":lua vim.lsp.buf.code_action()<CR>", " Code action"},
+			-- t = {":lua vim.lsp.buf.type_definition()<CR>", " Type definition"},
+			-- s = {":lua vim.lsp.diagnostic.show_line_diagnostics( { border = 'single' })<CR>", " Show diagnostic line"},
+			r = {":lua require('lspsaga.signaturehelp').signature_help()<CR>", " References"},
+			-- s = {":lua vim.lsp.buf.signature_help()<CR>", " Signature help"},
+			d = {":lua require'lspsaga.provider'.preview_definition()<CR>", " Definition"},
+			i = {":lua require'lspsaga.provider'.lsp_finder()<CR>", " Usage"},
+			h = {":lua require('lspsaga.hover').render_hover_doc()<CR>", " Hover documentation"},
+			a = {":lua require('lspsaga.codeaction').code_action()<CR>", " Code action"},
+			-- t = {":lua vim.lsp.buf.type_definition()<CR>", " Type definition"},
+			s = {":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", " Show diagnostic line"},
 		}
 	})
 	wk.register({
@@ -66,7 +74,7 @@
 	wk.register({
 		["["] = {
 			name = "+Actions",
-			d = {":lua vim.lsp.diagnostic.goto_next({ border = 'single' })<CR>", " Diagnostic next"},
+			d = {":require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", " Diagnostic next"},
 			r = {":lua require('navigator.treesitter').goto_next_usage()<CR>", " Next variables usage"},
 			c = {":lua vim.lsp.buf.incoming_calls()<CR>", " Incoming calls"},
 			-- d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Goto definition"},
@@ -79,7 +87,7 @@
 		}, 
 		["]"] = {
 			name = "+Actions",
-			d = {":lua vim.lsp.diagnostic.goto_prev({ border = 'single' })<CR>", " Diagnostic prev"},
+			d = {":require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", " Diagnostic prev"},
 			r = {":lua require('navigator.treesitter').goto_previous_usage()<CR>", " Prev variables usage"},
 			c = {":lua vim.lsp.buf.outgoing_calls()<CR>", " Outgoing calls"},
 		}
