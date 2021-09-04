@@ -32,7 +32,7 @@ return require('packer').startup(function()
 
 -- {{ interface 
 	use { -- colorscheme
-		'bluz71/vim-moonfly-colors',
+		'folke/tokyonight.nvim',
 		config = require ("plugins._theme").config
 	}
 	use {
@@ -166,8 +166,15 @@ use {
 		'ahmedkhalf/project.nvim'
 	}
 	use {
-		'hrsh7th/nvim-compe',
-		config = require("plugins._compe").config
+		'hrsh7th/nvim-cmp',
+		requires = {
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/vim-vsnip",
+		"hrsh7th/cmp-buffer",
+		},
+		config = function()
+			require("plugins._compe")
+		end
 	}
 	use {
 		'folke/todo-comments.nvim',

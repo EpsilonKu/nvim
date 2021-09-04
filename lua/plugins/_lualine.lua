@@ -22,11 +22,11 @@ function M.config()
     )
 	local lsp_status = require('lsp-status');
 	local config = {
-    	indicator_errors = '',
-   		indicator_warnings = '',
-   		indicator_info = 'i',
+    	indicator_errors = ' ',
+   		indicator_warnings = ' ',
+   		indicator_info = 'i ',
     	indicator_hint = '?',
-    	indicator_ok = '',
+    	indicator_ok = ' ',
 		status_symbol = ''
 	};
 	-- config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
