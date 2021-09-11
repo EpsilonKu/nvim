@@ -31,7 +31,7 @@ function M.config()
                     {id = "watches", size = 0.25}
                     -- You can change the order of elements in the sidebar
                 },
-                width = 40,
+                size = 40,
                 position = "left" -- Can be "left" or "right"
             },
             tray = {
@@ -40,7 +40,7 @@ function M.config()
                     {id = "scopes", size = 0.4},
                     {id = "stacks", size = 0.6}
                 },
-                height = 10,
+                size = 10,
                 position = "bottom" -- Can be "bottom" or "top"
             },
             floating = {
@@ -53,8 +53,8 @@ function M.config()
     require("dapui").float_element("watches")
 
     vim.fn.sign_define("DapBreakpoint", {text = "", texthl = "", linehl = "", numhl = ""})
-    vim.fn.sign_define("DapLogPoint", {text = "", texthl = "", linehl = "", numhl = ""})
-    vim.fn.sign_define("DapStopped", {text = "", texthl = "", linehl = "", numhl = ""})
+    -- vim.fn.sign_define("DapLogPoint", {text = "", texthl = "", linehl = "", numhl = ""})
+    -- vim.fn.sign_define("DapStopped", {text = "", texthl = "", linehl = "", numhl = ""})
 
     vim.g.dap_virtual_text = true
 

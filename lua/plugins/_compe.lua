@@ -4,6 +4,7 @@ local fn = vim.fn
 local api = vim.api
 local cmp = require("cmp")
 local lspkind = require("lspkind")
+local cmp = require "cmp"
 
 local function t(str)
     return api.nvim_replace_termcodes(str, true, true, true)
@@ -17,8 +18,6 @@ end
 local function __tab(fallback)
     if fn.pumvisible() == 1 then
         fn.feedkeys(t("<C-n>"), "n")
-    elseif luasnip.expand_or_jumpable() then
-        fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
     elseif check_back_space() then
         fn.feedkeys(t("<tab>"), "n")
     else
@@ -29,8 +28,6 @@ end
 local function __shift_tab(fallback)
     if fn.pumvisible() == 1 then
         fn.feedkeys(t("<C-p>"), "n")
-    elseif luasnip.jumpable(-1) then
-        fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
     else
         fallback()
     end
@@ -41,7 +38,6 @@ require("nvim-autopairs").setup {
     check_ts = false
 }
 
-local cmp = require "cmp"
 cmp.setup {
     snippet = {
         expand = function(args)

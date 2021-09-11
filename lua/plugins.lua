@@ -44,8 +44,10 @@ return require('packer').startup(function()
 		config = require ("plugins._lualine").config
 	}
 	use { -- starting screen
-		'glepnir/dashboard-nvim',
-		config = require("plugins._dashboard").config
+		'goolord/alpha-nvim',
+config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.opts)
+    end
 	}
 	use {
 		'romgrk/barbar.nvim',
