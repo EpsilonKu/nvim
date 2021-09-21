@@ -45,7 +45,7 @@ return require('packer').startup(function()
 	}
 	use { -- starting screen
 		'goolord/alpha-nvim',
-config = function ()
+		config = function ()
         require'alpha'.setup(require'alpha.themes.startify'.opts)
     end
 	}
@@ -86,6 +86,9 @@ config = function ()
 --	}
 	use {
 		'chrisbra/recover.vim'
+	}
+	use {
+		'lambdalisue/suda.vim'
 	}
 	use {
 		'sindrets/diffview.nvim'

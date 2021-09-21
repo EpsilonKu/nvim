@@ -22,6 +22,10 @@ U.map ("v", "j", "h")
 U.map ("i", "<C-S-V>", "<Esc>pa")
 U.map ("n", "<C-S-V>", "p")
 U.map ("v", "<C-S-V>", "p")
+U.map ("v", "<leader>y", '"+y')
+U.map ("n", "<leader>Y", '"+yg_')
+U.map ("n", "<leader>y", '"+y')
+U.map ("n", "<leader>yy", '"+yy')
 -- U.map ("n", "<Esc>", ":lua ListView.close()<CR>")
 -- }}}
 
