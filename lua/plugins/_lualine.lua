@@ -5,10 +5,10 @@ function M.config()
     gps.setup(
         {
             icons = {
-                ["class-name"] = "", -- Classes and class-like objects
-                ["function-name"] = "", -- Functions
-                ["method-name"] = "", -- Methods (functions inside class-like objects)
-				["container-name"] = '⛶ '
+                ["class-name"] = "  ", -- Classes and class-like objects
+                ["function-name"] = "  ", -- Functions
+                ["method-name"] = "  ", -- Methods (functions inside class-like objects)
+				["container-name"] = "⛶  "
             },
             languages = {
                 -- You can disable any language individually here
