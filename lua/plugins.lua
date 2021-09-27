@@ -31,9 +31,13 @@ return require('packer').startup(function()
 -- }}
 
 -- {{ interface 
+	use {
+					'rktjmp/lush.nvim'
+
+	}
 	use { -- colorscheme
-		'folke/tokyonight.nvim',
-		config = require ("plugins._theme").config
+		'metalelf0/jellybeans-nvim',
+		config = require ("plugins._theme").config,
 	}
 	use {
 		'lukas-reineke/indent-blankline.nvim',
@@ -148,9 +152,9 @@ use {
 		'neovim/nvim-lspconfig',
 		config = require("plugins._lsp").config
 	}
-	use {
-		"onsails/lspkind-nvim",
-	}
+	-- use {
+	-- 	"onsails/lspkind-nvim",
+	-- }
 	use {
 		'ray-x/lsp_signature.nvim'
 	}
@@ -170,17 +174,34 @@ use {
 	use {
 		'ahmedkhalf/project.nvim'
 	}
+
 	use {
+                'hrsh7th/cmp-nvim-lsp',
+        }
+            use{
+                'hrsh7th/cmp-path',
+                after = 'nvim-cmp',
+            }
+            use{
+                'hrsh7th/cmp-buffer',
+                after = 'nvim-cmp',
+            }
+  use {
 		'hrsh7th/nvim-cmp',
-		requires = {
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/vim-vsnip",
-		"hrsh7th/cmp-buffer",
-		},
-		config = function()
+    	config = function()
+      -- your config
 			require("plugins._compe")
-		end
-	}
+    	end,
+  	}  
+
+	-- use {
+	-- 	'hrsh7th/nvim-cmp',
+	-- 	config = function()
+	-- 		require("plugins._compe")
+	-- 	end
+	-- }
+	-- use { "hrsh7th/cmp-buffer", requires = { "hrsh7th/nvim-cmp" } }
+	-- use { "hrsh7th/cmp-nvim-lsp", requires = { "hrsh7th/nvim-cmp" } }
 	use {
 		'folke/todo-comments.nvim',
 		requires = {
@@ -196,7 +217,10 @@ use {
 	-- 	config = require("plugins._lsp-utils").config
 	-- }
 	use {
-		'mfussenegger/nvim-jdtls'
+		'mfussenegger/nvim-jdtls',
+		-- config = function ()
+		-- 	require('filetype._java').init()
+		-- end
 	}
 	use {
 		'rcarriga/nvim-dap-ui',

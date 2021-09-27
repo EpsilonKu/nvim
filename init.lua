@@ -20,5 +20,4 @@ end
 -- Vanilla Config
 require "settings"
 require "plugins"
-require "files"
 require "mappings"
