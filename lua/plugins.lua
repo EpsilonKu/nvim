@@ -50,7 +50,9 @@ return require("packer").startup(
         }
         use {
             "lukas-reineke/indent-blankline.nvim",
-            config = require("plugins._indent").config
+            config = function()
+				require("plugins._indent")
+			end
         }
         use {
             -- status line
@@ -61,7 +63,7 @@ return require("packer").startup(
             -- starting screen
             "goolord/alpha-nvim",
             config = function()
-                require "alpha".setup(require "alpha.themes.startify".opts)
+                require ("plugins._dashboard")
             end
         }
         use {
