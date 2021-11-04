@@ -20,7 +20,6 @@ function M.config()
                 repl = "r"
             },
             sidebar = {
-                open_on_start = false,
                 elements = {
                     {
                         id = "scopes",
@@ -35,7 +34,6 @@ function M.config()
                 position = "left" -- Can be "left" or "right"
             },
             tray = {
-                open_on_start = true,
                 elements = {
                     {id = "scopes", size = 0.4},
                     {id = "stacks", size = 0.6}
@@ -49,8 +47,6 @@ function M.config()
             }
         }
     )
-
-    require("dapui").float_element("watches")
 
     vim.fn.sign_define("DapBreakpoint", {text = "", texthl = "", linehl = "", numhl = ""})
     -- vim.fn.sign_define("DapLogPoint", {text = "", texthl = "", linehl = "", numhl = ""})

@@ -1,6 +1,4 @@
-local M = {}
 
-function M.config()
 	local U = require "utils"
 	local finders = require "telescope.builtin"
 	local actions = require "telescope.actions"
@@ -62,6 +60,4 @@ function M.config()
         finders[fn]()
     end
 
-end
 
-return M

@@ -1,6 +1,26 @@
 
 	local wk = require ("which-key")
 
+local U = require "utils"
+U.map ("n", "d", '"_d')
+U.map ("v", "d", '"_d')
+U.map ("n", "x", '"_x')
+U.map ("v", "x", '"_x')
+U.map ("n", ";", "l")
+U.map ("n", "l", "k")
+U.map ("n", "k", "j")
+U.map ("n", "j", "h")
+U.map ("v", ";", "l")
+U.map ("v", "l", "k")
+U.map ("v", "k", "j")
+U.map ("v", "j", "h")
+U.map ("i", "<C-S-V>", "<Esc>pa")
+U.map ("n", "<C-S-V>", "p")
+U.map ("v", "<C-S-V>", "p")
+U.map ("v", "<leader>y", '"+y')
+U.map ("n", "<leader>Y", '"+yg_')
+U.map ("n", "<leader>y", '"+y')
+U.map ("n", "<leader>yy", '"+yy')
 	wk.register({
 		["<Space>"] = {
 			name = "+Quick Actions",
@@ -10,7 +30,8 @@
 			i = { ":lua require('dap.ui.widgets').hover()<CR>", "  Debug Float" },
 			d = { ":lua require'dap'.toggle_breakpoint()<CR>", "  Toggle Breakpoint" },
 			e = { ":lua require'dap'.continue()<CR>", "  Debug Continue"},
-			l = { ":Neoformat<CR>", "  Format code" }
+			l = { ":Neoformat<CR>", "  Format code" },
+			r = { ":lua require('spectre').open()<CR>", " Search and Replace"}
 		}
 	})
 	wk.register({
@@ -54,6 +75,7 @@
 			r = {":lua require('lspsaga.signaturehelp').signature_help()<CR>", " References"},
 			-- s = {":lua vim.lsp.buf.signature_help()<CR>", " Signature help"},
 			d = {":lua require'lspsaga.provider'.preview_definition()<CR>", " Definition"},
+			e = {":lua vim.lsp.buf.definition()<CR>", " Go to definition"},
 			i = {":lua require'lspsaga.provider'.lsp_finder()<CR>", " Usage"},
 			h = {":lua require('lspsaga.hover').render_hover_doc()<CR>", " Hover documentation"},
 			a = {":lua require('lspsaga.codeaction').code_action()<CR>", " Code action"},
@@ -64,11 +86,11 @@
 	wk.register({
 	["f"] = {
 			name = "+Telescope",
-			a = { ":Telescope find_files<CR>", "  Telescope find file" },
-			b = { ":lua TelescopeOpen('buffers')<CR>", " ﬘ Telescope list buffer" },
-			c = { ":lua TelescopeOpen('live_grep')<CR>", "  Telescope live grep" },
+			a = { ":lua require('telescope.builtin').find_files()<CR>", "  Telescope find file" },
+			b = { ":lua require('telescope.builtin').buffers()<CR>", " ﬘ Telescope list buffer" },
+			c = { ":lua require('telescope.builtin').live_grep()<CR>", "  Telescope live grep" },
 			d = { "<CMD>lua TelescopeOpen('oldfiles')<CR>", "  Telescope buffer history" },
-			e = { "<CMD>lua TelescopeOpen('registers')<CR>", "  Telescope register list" },
+			e = { ":lua require('telescope.builtin').help_tags()<CR>", "  Telescope help tags" },
 		}
 	})
 	wk.register({

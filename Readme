@@ -1,0 +1,36 @@
+
+Welcome to the Centers for Disease Control and Prevention and Agency for 
+Toxic Substances and Disease Registry FTP server.  Information maintained on 
+this server is in the public domain and is available at anytime for your use.
+CDC/ATSDR requests that you provide a valid e-mail address when responding to
+the FTP server's password prompt.
+
+FTP POLICY
+
+CDC/ATSDR's file structure is designed to make information easily accessible
+for faster response.  All FTP directories and sub-directories should contain
+the following files:
+
+	README.TXT	Contains general information and Disclaimer text.
+			(ASCII)
+
+To maintain information integrity and assure system security, anonymous 
+uploads ARE NOT ALLOWED.
+
+COMMENTS
+
+Please send general comments to netinfo@cdc1.cdc.gov.  To report any 
+problems experienced while accessing this archive send a comment to 
+hostmaster@cdc.gov  Also for your convenience, a contact address
+for comments or questions specific to information or file is provided
+in the topical directory README file.
+
+STATEMENT OF AUTHENTICITY
+
+This material has been cleared for public distribution by CDC/ATSDR and
+will be authentic if obtained directly from ftp.cdc.gov.  CDC/ATSDR takes
+all effort to assure the authenticity of electronically distributed 
+documents.  However, in all instances where the electronic and official
+agency record differ, the authenticity of the official agency record is
+controlling.
+

@@ -79,16 +79,28 @@ function M.config()
             }
         }
     )
-
+-- 
     --Html lsp
     --Enable (broadcasting) snippet capability for completion
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+--     local capabilities = vim.lsp.protocol.make_client_capabilities()
+--     capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- 
+--     require "lspconfig".html.setup {
+--         capabilities = capabilities,
+--     }
+	    local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     require "lspconfig".html.setup {
-        capabilities = capabilities
+        capabilities = capabilities,
     }
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+require'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+}
+-- require'lspconfig'.stylelint_lsp.setup{}
 
 local saga = require 'lspsaga'
 
@@ -130,7 +142,7 @@ definition_preview_icon = '  '
 -- like server_filetype_map = {metals = {'sbt', 'scala'}}
 -- server_filetype_map = {}
 }
-
+require'lspconfig'.clangd.setup{}
 end
 
 return M

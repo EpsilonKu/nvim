@@ -6,26 +6,6 @@ local function opt(scope, key, value)
 end
 
 -- {{{ Global Map
-local U = require "utils"
-U.map ("n", "d", '"_d')
-U.map ("v", "d", '"_d')
-U.map ("n", "x", '"_x')
-U.map ("v", "x", '"_x')
-U.map ("n", ";", "l")
-U.map ("n", "l", "k")
-U.map ("n", "k", "j")
-U.map ("n", "j", "h")
-U.map ("v", ";", "l")
-U.map ("v", "l", "k")
-U.map ("v", "k", "j")
-U.map ("v", "j", "h")
-U.map ("i", "<C-S-V>", "<Esc>pa")
-U.map ("n", "<C-S-V>", "p")
-U.map ("v", "<C-S-V>", "p")
-U.map ("v", "<leader>y", '"+y')
-U.map ("n", "<leader>Y", '"+yg_')
-U.map ("n", "<leader>y", '"+y')
-U.map ("n", "<leader>yy", '"+yy')
 -- U.map ("n", "<Esc>", ":lua ListView.close()<CR>")
 -- }}}
 
@@ -34,6 +14,13 @@ vim.cmd(([[
 ]]))
 
 local indent = 4
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.g.neovide_refresh_rate=60
+-- vim.g.neovide_fullscreen=true
+vim.g.neovide_window_floating_opacity = 100
+vim.g.neovide_floating_blur = 100
+-- vim.g.neovide_remember_window_size = true
+vim.g.neovide_cursor_antialiasing=true
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
@@ -49,6 +36,7 @@ opt('o', 'splitright', true)                          -- Put new windows right o
 opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('o', 'timeoutlen', 0)
+opt('o', 'filetype', 'on')
 opt('o', 'encoding', 'UTF-8')
 opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
