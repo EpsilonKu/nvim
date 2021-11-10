@@ -49,10 +49,9 @@ dashboard.section.header.val = {
 dashboard.section.header.opts.hl = pick_color()
 
 dashboard.section.buttons.val = {
-  button("SPC f h", "  Recently opened files"),
-  button("SPC f f", "  Find file"),
-  button("SPC f a", "  Find word"),
-  button("SPC s l", "  Open session"),
+  button("r", "  Recently opened files"),
+  button("SPC f a", "  Find file"),
+  button("SPC f c", "  Find word"),
   button("SPC c n", "  New file"),
   button("SPC c c", "  Update plugins"),
   button("q", "  Quit", "<Cmd>qa<CR>")
@@ -67,6 +66,6 @@ require"alpha".setup(dashboard.opts)
 vim.cmd [[
 augroup alpha_tabline
   au!
-  au FileType alpha set showtabline=0 | au BufUnload <buffer> set showtabline=2
+	au OptionSet showtabline :set showtabline=1
 augroup END
 ]]

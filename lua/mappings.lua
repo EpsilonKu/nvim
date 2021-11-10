@@ -2,7 +2,10 @@
 	local wk = require ("which-key")
 
 local U = require "utils"
+U.map ("v", "c", "d")
+U.map ("n", "c", "d")
 U.map ("n", "d", '"_d')
+U.map ("n", "<C-q>", ":NvimTreeToggle<CR>");
 U.map ("v", "d", '"_d')
 U.map ("n", "x", '"_x')
 U.map ("v", "x", '"_x')
@@ -17,25 +20,24 @@ U.map ("v", "j", "h")
 U.map ("i", "<C-S-V>", "<Esc>pa")
 U.map ("n", "<C-S-V>", "p")
 U.map ("v", "<C-S-V>", "p")
-U.map ("v", "<leader>y", '"+y')
-U.map ("n", "<leader>Y", '"+yg_')
-U.map ("n", "<leader>y", '"+y')
-U.map ("n", "<leader>yy", '"+yy')
+-- U.map ("v", "<leader>y", '"+y')
+-- U.map ("n", "<leader>Y", '"+yg_')
+-- U.map ("n", "<leader>y", '"+y')
+-- U.map ("n", "<leader>yy", '"+yy')
 	wk.register({
 		["<Space>"] = {
 			name = "+Quick Actions",
-			f = { ":RnvimrToggle<CR>", " ﱮ Open ranger explorer" },
 			t = { ":lua require('FTerm').close()<CR>", "  Terminal Close Float" },
 			o = { ":lua require('FTerm').open()<CR>", "  Terminal Open Float" },
 			i = { ":lua require('dap.ui.widgets').hover()<CR>", "  Debug Float" },
 			d = { ":lua require'dap'.toggle_breakpoint()<CR>", "  Toggle Breakpoint" },
-			e = { ":lua require'dap'.continue()<CR>", "  Debug Continue"},
+			c = { ":lua require'dap'.continue()<CR>", "  Debug Continue"},
 			l = { ":Neoformat<CR>", "  Format code" },
 			r = { ":lua require('spectre').open()<CR>", " Search and Replace"}
 		}
 	})
 	wk.register({
-		["<leader>f"] = {
+		["<Space>e"] = {
 			name = "+Debugger",
 			w = {":lua vim.lsp.buf.workspace_symbol()<CR>", " Workspace symbol"},
 			d = {":lua vim.lsp.buf.document_symbol()<CR>", " Document symbol"},
@@ -43,7 +45,7 @@ U.map ("n", "<leader>yy", '"+yy')
 			d = {":lua require('navigator.diagnostics').show_diagnostic()<CR>", " Show all buffer diagnostic"},
 			f = {":lua vim.lsp.buf.formatting()<CR>", "Format code with lsp"}
 		},
-		["<leader>d"] = {
+		["<Space>d"] = {
 			name = "+Debugger",
 			a = { ":lua require'dap'.toggle_breakpoint()<CR>", "  Toggle Breakpoint" },
 			s = { ":lua require'dap'.step_over()<CR>", "  Debug Step Over" },
@@ -84,8 +86,8 @@ U.map ("n", "<leader>yy", '"+yy')
 		}
 	})
 	wk.register({
-	["f"] = {
-			name = "+Telescope",
+	["<Space>f"] = {
+			name = "+Search",
 			a = { ":lua require('telescope.builtin').find_files()<CR>", "  Telescope find file" },
 			b = { ":lua require('telescope.builtin').buffers()<CR>", " ﬘ Telescope list buffer" },
 			c = { ":lua require('telescope.builtin').live_grep()<CR>", "  Telescope live grep" },

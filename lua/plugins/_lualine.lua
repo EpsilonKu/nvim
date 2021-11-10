@@ -44,6 +44,10 @@ function M.config()
             lualine_y = {lsp_status.status},
             lualine_z = {"location"}
         },
+		extensions = {
+			'nvim-tree',
+			'toggleterm'
+		},
         inactive_sections = {
             lualine_a = {},
             lualine_b = {},

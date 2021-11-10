@@ -4,9 +4,11 @@ require'nvim-tree'.setup {
   disable_netrw       = true,
   hijack_netrw        = true,
   open_on_setup       = false,
-  auto_close          = true,
+  ignore_ft_on_setup  = {},
+  auto_close          = false,
   open_on_tab         = false,
   hijack_cursor       = false,
+  update_cwd          = false,
   update_to_buf_dir   = {
     enable = true,
     auto_open = true,
@@ -45,3 +47,26 @@ require'nvim-tree'.setup {
     }
   }
 }
+-- vim.g.nvim_tree_icons = {
+--     'default': '',
+--     'symlink': '',
+--     'git': {
+--        'unstaged': "ﮖ",
+--        'staged': "烙",
+--        'unmerged': "",
+--        'renamed': "➜",
+--        'untracked': "★",
+--        'deleted': "",
+--        'ignored': "◌"
+--        },
+--      'folder': {
+--        'arrow_open': "",
+--        'arrow_closed': "",
+--        'default': "",
+--        'open': "",
+--        'empty': "",
+--        'empty_open': "",
+--        'symlink': "",
+--        'symlink_open': "",
+--        }
+--      }

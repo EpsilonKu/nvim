@@ -11,7 +11,7 @@ return require("packer").startup(
         -- {{ keybinding stuff
         use {
             "folke/which-key.nvim",
-            config = require("plugins._whichkey").config
+            config = ("plugins._whichkey").config
         }
         use {
             "blackcauldron7/surround.nvim"
@@ -31,11 +31,52 @@ return require("packer").startup(
         use {
             "sbdchd/neoformat"
         }
+		use {
+			"gelguy/wilder.nvim",
+			config = function()
+
+	vim.cmd [[
+	call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<Tab>',
+      \ 'previous_key': '<S-Tab>',
+      \ 'accept_key': '<Down>',
+      \ 'reject_key': '<Up>',
+      \ })
+
+	call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+	  \ 'highlighter': wilder#basic_highlighter(),
+      \ 'highlights': {
+      \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
+      \ },
+      \ 'min_width': '100%',
+      \ 'min_height': '50%',
+      \ 'reverse': 0,
+      \ 'left': [
+      \   ' ', wilder#popupmenu_devicons(),
+      \ ],
+      \ 'right': [
+      \   ' ', wilder#popupmenu_scrollbar(),
+      \ ],
+      \ })))
+
+]]
+			end
+		}
         use {
             "simrat39/symbols-outline.nvim"
         }
         use {
-            "folke/persistence.nvim"
+            "folke/persistence.nvim",
+			event = "BufReadPre", -- this will only start session saving when an actual file was opened
+			module = "persistence",
+			config = function()
+				require("persistence").setup(
+					{
+  						dir = vim.fn.expand(vim.fn.stdpath("config") .. "/sessions/"), -- directory where session files are saved
+  						options = { "buffers", "curdir", "tabpages" }, -- sessionoptions used for saving
+					})
+			end,
         }
         -- }}
 
@@ -48,6 +89,15 @@ return require("packer").startup(
             "metalelf0/jellybeans-nvim",
             config = require("plugins._theme").config
         }
+		use {
+			"andweeb/presence.nvim",
+			config = function()
+				-- The setup config table shows all available config options with their default values:
+require("presence"):setup({
+})
+
+			end
+		}
         use {
             "lukas-reineke/indent-blankline.nvim",
             config = function()
@@ -56,7 +106,7 @@ return require("packer").startup(
         }
         use {
             -- status line
-            "hoob3rt/lualine.nvim",
+            "nvim-lualine/lualine.nvim",
             config = require("plugins._lualine").config
         }
         use {
@@ -67,8 +117,11 @@ return require("packer").startup(
             end
         }
         use {
-            "romgrk/barbar.nvim",
-            config = require("plugins._barbar").config
+			'akinsho/bufferline.nvim', 
+			requires = 'kyazdani42/nvim-web-devicons',
+    		config = function()
+				require("plugins._barbar")
+			end
         }
         -- use {
             -- "sidebar-nvim/sidebar.nvim",
@@ -181,6 +234,9 @@ return require("packer").startup(
             "neovim/nvim-lspconfig",
             config = require("plugins._lsp").config
         }
+		use {
+			'tjdevries/nlua.nvim'
+		}
         use {
             "onsails/lspkind-nvim"
         }
