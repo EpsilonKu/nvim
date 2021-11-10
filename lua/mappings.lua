@@ -20,10 +20,6 @@ U.map ("v", "j", "h")
 U.map ("i", "<C-S-V>", "<Esc>pa")
 U.map ("n", "<C-S-V>", "p")
 U.map ("v", "<C-S-V>", "p")
--- U.map ("v", "<leader>y", '"+y')
--- U.map ("n", "<leader>Y", '"+yg_')
--- U.map ("n", "<leader>y", '"+y')
--- U.map ("n", "<leader>yy", '"+yy')
 	wk.register({
 		["<Space>"] = {
 			name = "+Quick Actions",
@@ -33,9 +29,16 @@ U.map ("v", "<C-S-V>", "p")
 			d = { ":lua require'dap'.toggle_breakpoint()<CR>", "  Toggle Breakpoint" },
 			c = { ":lua require'dap'.continue()<CR>", "  Debug Continue"},
 			l = { ":Neoformat<CR>", "  Format code" },
-			r = { ":lua require('spectre').open()<CR>", " Search and Replace"}
 		}
 	})
+wk.register({
+	["<Space>r"] = {
+		name = "+Sessions",
+		c = { ":lua require('persistence').load()<CR>", " Load session from Directory"},
+		l = { ":lua require('persistence').load({ last = true })<CR>", " Load last session"},
+		s = { ":lua require('persistence').stop()<CR>", " Exit session"}
+	}
+})
 	wk.register({
 		["<Space>e"] = {
 			name = "+Debugger",
@@ -93,6 +96,7 @@ U.map ("v", "<C-S-V>", "p")
 			c = { ":lua require('telescope.builtin').live_grep()<CR>", "  Telescope live grep" },
 			d = { "<CMD>lua TelescopeOpen('oldfiles')<CR>", "  Telescope buffer history" },
 			e = { ":lua require('telescope.builtin').help_tags()<CR>", "  Telescope help tags" },
+			r = { ":lua require('spectre').open()<CR>", " Search and Replace"}
 		}
 	})
 	wk.register({
