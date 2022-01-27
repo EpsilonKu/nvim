@@ -9,10 +9,9 @@ end
 -- U.map ("n", "<Esc>", ":lua ListView.close()<CR>")
 -- }}}
 
-vim.cmd(([[
-	set autoindent smartindent
-]]))
-
+vim.cmd [[
+ au! TabNewEntered * Alpha 
+]]
 local indent = 4
 vim.o.completeopt = 'menuone,noinsert,noselect'
 vim.g.neovide_refresh_rate=60
@@ -36,9 +35,7 @@ opt('o', 'splitright', true)                          -- Put new windows right o
 opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('o', 'timeoutlen', 0)
-opt('o', 'filetype', 'on')
 opt('o', 'encoding', 'UTF-8')
-opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
 opt('o', 'pastetoggle', '<F10>')
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)

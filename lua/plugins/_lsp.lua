@@ -1,29 +1,10 @@
-local M = {}
-
-function M.config()
     local g = vim.g
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    -- vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
-    -- vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
-    -- vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
-    -- vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
-
-    -- set default prefix.
-    -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    --     vim.lsp.with(
-    --     vim.lsp.diagnostic.on_publish_diagnostics,
-    --     {
-    --         -- virtual_text = false,
-    --         virtual_text = {prefix = ""},
-    --         signs = true,
-    --         update_in_insert = false
-    --     }
-    -- )
-    vim.g.nvim_tree_update_cwd = 1
-    vim.g.nvim_tree_respect_buf_cwd = 1
+    -- vim.g.nvim_tree_update_cwd = 1
+    -- vim.g.nvim_tree_respect_buf_cwd = 1
     require("project_nvim").setup {
         manual_mode = false,
         -- Methods of detecting the root directory. **"lsp"** uses the native neovim
@@ -80,71 +61,34 @@ function M.config()
         }
     )
 
-
--- 
-    --Html lsp
-    --Enable (broadcasting) snippet capability for completion
---     local capabilities = vim.lsp.protocol.make_client_capabilities()
---     capabilities.textDocument.completion.completionItem.snippetSupport = true
--- 
---     require "lspconfig".html.setup {
---         capabilities = capabilities,
---     }
-	    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-
     require "lspconfig".html.setup {
         capabilities = capabilities,
+		   init_options = {
+      configurationSection = { "html", "css", "javascript" },
+      embeddedLanguages = {
+        css = true,
+        javascript = true
+      }
     }
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+    }
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.cssls.setup {
-  capabilities = capabilities,
-}
--- require'lspconfig'.stylelint_lsp.setup{}
+	require'lspconfig'.cmake.setup{}
+    
+	local saga = require "lspsaga"
+    saga.init_lsp_saga {
+        error_sign = "",
+        warn_sign = "",
+        hint_sign = "",
+        infor_sign = "",
+        code_action_icon = "",
+        code_action_keys = {
+            quit = "<Esc>",
+            exec = "<CR>"
+        },
+        definition_preview_icon = "  "
+    }
+    require "lspconfig".clangd.setup {}
+require'lspconfig'.vala_ls.setup{}
 
-local saga = require 'lspsaga'
-
--- add your config value here
--- default value
-
-saga.init_lsp_saga {
--- use_saga_diagnostic_sign = true
-error_sign = '',
-warn_sign = '',
-hint_sign = '',
-infor_sign = '',
-diagnostic_header_icon = '   ',
-code_action_icon = '',
--- code_action_prompt = {
---   enable = true,
---   sign = true,
---   sign_priority = 20,
---   virtual_text = true,
--- },
--- finder_definition_icon = '  ',
--- finder_reference_icon = '  ',
--- max_preview_lines = 10, -- preview lines of lsp_finder and definition preview
--- finder_action_keys = {
---   open = 'o', vsplit = 's',split = 'i',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
--- },
-code_action_keys = {
-  quit = '<Esc>',exec = '<CR>'
-},
--- rename_action_keys = {
---   quit = '<C-c>',exec = '<CR>'  -- quit can be a table
--- },
-definition_preview_icon = '  '
--- "single" "double" "round" "plus"
--- border_style = "single"
--- rename_prompt_prefix = '➤',
--- if you don't use nvim-lspconfig you must pass your server name and
--- the related filetypes into this table
--- like server_filetype_map = {metals = {'sbt', 'scala'}}
--- server_filetype_map = {}
-}
-require'lspconfig'.clangd.setup{}
-end
-
-return M

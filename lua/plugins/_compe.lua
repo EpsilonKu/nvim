@@ -38,8 +38,14 @@ cmp.setup {
     end
   }
 }
+-- vim.highlight.create('CmpItemAbbrMatch', {guibg=0}, false)
+-- highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+-- highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+-- highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+-- highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+-- highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+-- highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
--- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
 cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 
 -- let g:dashboard_custom_header=[

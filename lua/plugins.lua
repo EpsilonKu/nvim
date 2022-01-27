@@ -13,29 +13,58 @@ return require("packer").startup(
             "folke/which-key.nvim",
             config = ("plugins._whichkey").config
         }
+		use {
+			"stevearc/dressing.nvim",
+			config = function()
+				
+			end
+		}
+		use {
+			"nanozuki/tabby.nvim",
+            config = function()
+                require("plugins._barbar")
+            end
+		}
+		use {
+			"max397574/better-escape.nvim",
+			config = function()
+-- lua, default settings
+require("better_escape").setup {
+    mapping = {"jj"}, -- a table with mappings to use
+    timeout = 500, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+    clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+    keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+}
+			end
+		}
+		use {
+			"LinArcX/telescope-command-palette.nvim"
+		}
         use {
-            "blackcauldron7/surround.nvim"
+            "blackcauldron7/surround.nvim",
+            config = function()
+                require "surround".setup {mappings_style = "sandwich"}
+            end
         }
-        use {
-            -- commenting
-            "terrortylor/nvim-comment",
-            config = require("plugins._comment").config
-        }
-        use {
-            "pianocomposer321/yabs.nvim"
-        }
+        -- use {
+        --     -- commenting
+        --     "terrortylor/nvim-comment",
+        --     config = require("plugins._comment").config
+        -- }
         use {
             "mhartington/formatter.nvim",
-            config = require("plugins._formatter").config
-        }
-        use {
-            "sbdchd/neoformat"
+    	    config = require("plugins._formatter").config
         }
 		use {
-			"gelguy/wilder.nvim",
+			"numToStr/Comment.nvim",
 			config = function()
-
-	vim.cmd [[
+				require('Comment').setup()
+			end
+		}
+        use {
+            "gelguy/wilder.nvim",
+            config = function()
+                vim.cmd [[
 	call wilder#setup({
       \ 'modes': [':', '/', '?'],
       \ 'next_key': '<Tab>',
@@ -61,48 +90,53 @@ return require("packer").startup(
       \ })))
 
 	]]
-			end
-		}
+            end
+        }
         use {
             "simrat39/symbols-outline.nvim"
         }
+    --     use {
+    --         "ldelossa/calltree.nvim",
+    --         config = function()
+				-- require('calltree').setup({})
+    --         end
+    --     }
         use {
             "folke/persistence.nvim",
-			event = "BufReadPre", -- this will only start session saving when an actual file was opened
-			module = "persistence",
-			config = function()
-				require("persistence").setup(
-					{
-  						dir = vim.fn.expand(vim.fn.stdpath("config") .. "/sessions/"), -- directory where session files are saved
-  						options = { "buffers", "curdir", "tabpages" }, -- sessionoptions used for saving
-					})
-			end,
+            event = "BufReadPre", -- this will only start session saving when an actual file was opened
+            module = "persistence",
+            config = function()
+                require("persistence").setup(
+                    {
+                        dir = vim.fn.expand(vim.fn.stdpath("config") .. "/sessions/"), -- directory where session files are saved
+                        options = {"buffers", "curdir", "tabpages"} -- sessionoptions used for saving
+                    }
+                )
+            end
         }
         -- }}
 
         -- {{ interface
         use {
-            "rktjmp/lush.nvim"
+            -- colorscheme
+            "savq/melange",
+            config = require("plugins._theme").config,
+			requires = {
+            	"rktjmp/lush.nvim"
+			}	
         }
         use {
-            -- colorscheme
-            "metalelf0/jellybeans-nvim",
-            config = require("plugins._theme").config
+            "andweeb/presence.nvim",
+            config = function()
+                -- The setup config table shows all available config options with their default values:
+                require("presence"):setup({})
+            end
         }
-		use {
-			"andweeb/presence.nvim",
-			config = function()
-				-- The setup config table shows all available config options with their default values:
-require("presence"):setup({
-})
-
-			end
-		}
         use {
             "lukas-reineke/indent-blankline.nvim",
             config = function()
-				require("plugins._indent")
-			end
+                require("plugins._indent")
+            end
         }
         use {
             -- status line
@@ -113,27 +147,26 @@ require("presence"):setup({
             -- starting screen
             "goolord/alpha-nvim",
             config = function()
-                require ("plugins._dashboard")
+                require("plugins._dashboard")
             end
         }
-        use {
-			'akinsho/bufferline.nvim', 
-			requires = 'kyazdani42/nvim-web-devicons',
-    		config = function()
-				require("plugins._barbar")
-			end
-        }
         -- use {
-            -- "sidebar-nvim/sidebar.nvim",
-            -- rocks = {"luatz"},
-            -- config = require("plugins._navigator").config
+        --     "akinsho/bufferline.nvim",
+        --     requires = "kyazdani42/nvim-web-devicons",
+        --     config = function()
+        --         require("plugins._barbar")
+        --     end
+        -- }
+        -- use {
+        -- "sidebar-nvim/sidebar.nvim",
+        -- rocks = {"luatz"},
+        -- config = require("plugins._navigator").config
         -- }
         use {
             "kyazdani42/nvim-tree.lua",
-            config = function() 
-				require("plugins._tree")
-			end
-			
+            config = function()
+                require("plugins._tree")
+            end
         }
         -- use {
         --     "kevinhwang91/rnvimr",
@@ -181,6 +214,13 @@ require("presence"):setup({
             config = require("plugins._floaterm").config
         }
         -- use {
+        -- 	'weilbith/nvim-floating-tag-preview',
+        -- 	config = function()
+        --
+        -- 	end,
+        -- 	cmd = {'Ptag', 'Ptselect', 'Ptjump', 'Psearch', 'Pedit' },
+        -- }
+        -- use {
         --     "pianocomposer321/consolation.nvim"
         -- }
         use {
@@ -201,8 +241,8 @@ require("presence"):setup({
                 }
             },
             config = function()
-				require("plugins._telescope")
-			end
+                require("plugins._telescope")
+            end
         }
         use {
             "nvim-telescope/telescope-fzy-native.nvim",
@@ -232,11 +272,13 @@ require("presence"):setup({
         -- {{ neovim lsp
         use {
             "neovim/nvim-lspconfig",
-            config = require("plugins._lsp").config
+            config = function()
+                require("plugins._lsp")
+            end
         }
-		use {
-			'tjdevries/nlua.nvim'
-		}
+        use {
+            "tjdevries/nlua.nvim"
+        }
         use {
             "onsails/lspkind-nvim"
         }
@@ -244,15 +286,8 @@ require("presence"):setup({
             "ray-x/lsp_signature.nvim"
         }
         use {
-            "tami5/lspsaga.nvim"
+            "tami5/lspsaga.nvim",
         }
-        -- use {'ray-x/navigator.lua',
-        -- 	requires = {
-        -- 		'ray-x/guihua.lua',
-        -- 		run = 'cd lua/fzy && make'
-        -- 	},
-        -- 	config = require("plugins._navigator").config
-        -- }
         use {
             "nvim-lua/lsp-status.nvim"
         }
@@ -278,14 +313,6 @@ require("presence"):setup({
             end
         }
 
-        -- use {
-        -- 	'hrsh7th/nvim-cmp',
-        -- 	config = function()
-        -- 		require("plugins._compe")
-        -- 	end
-        -- }
-        -- use { "hrsh7th/cmp-buffer", requires = { "hrsh7th/nvim-cmp" } }
-        -- use { "hrsh7th/cmp-nvim-lsp", requires = { "hrsh7th/nvim-cmp" } }
         use {
             "folke/todo-comments.nvim",
             requires = {
@@ -293,18 +320,8 @@ require("presence"):setup({
             },
             config = require("plugins._lsp-trouble").config
         }
-        -- use {
-        -- 	'rishabhrd/nvim-lsputils',
-        -- 	requires = {
-        -- 	'rishabhrd/popfix'
-        -- 	},
-        -- 	config = require("plugins._lsp-utils").config
-        -- }
         use {
             "mfussenegger/nvim-jdtls"
-            -- config = function ()
-            -- 	require('filetype._java').init()
-            -- end
         }
         use {
             "rcarriga/nvim-dap-ui",
@@ -313,7 +330,9 @@ require("presence"):setup({
                 "theHamsta/nvim-dap-virtual-text",
                 "nvim-telescope/telescope-dap.nvim"
             },
-            config = require("plugins._dap").config
+            config = function()
+                require("plugins._dap")
+            end
         }
         -- }}
     end

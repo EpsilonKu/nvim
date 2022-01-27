@@ -1,79 +1,169 @@
-	local U = require "utils"
-	local g = vim.g
-	
--- 	U.map ("n", "<C-d>", ":BufferNext <CR>")
--- 	U.map ("n", "<C-a>", ":BufferPrevious <CR>")
--- 
--- 	U.map ("i", "<C-d>", ":BufferNext <CR>")
--- 	U.map ("i", "<C-a>", ":BufferPrevious <CR>")
--- 	
--- 	U.map ("n", "<C-F4>",":BufferClose <CR>")
--- 	U.map ("n", "<C-S-F4>",":BufferCloseAllButCurrent <CR>")
+local util = require('tabby.util')
+local hl_tabline = util.extract_nvim_hl('TabLine')
+local hl_normal = util.extract_nvim_hl('Normal')
+local hl_tabline_sel = util.extract_nvim_hl('TabLineSel')
+local active_tab_hl = { fg = hl_normal.fg, bg = hl_normal.bg, style = 'bold' }
+local inactive_tab_hl = { fg = hl_tabline.fg, bg = hl_tabline.bg }
 
-vim.opt.termguicolors = true
-require("bufferline").setup{}
+local function fileIcon()
+	return '  ' .. require ('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'), {default = true}) .. '  '
+end
 
-	U.map ("n", "<C-d>", ":BufferLineCycleNext <CR>")
-	U.map ("n", "<C-a>", ":BufferLineCyclePrev <CR>")
+----
+local function tab_label(tabid, active)
+  local icon = active and '' or ''
+  local number = vim.api.nvim_tabpage_get_number(tabid)
+  local name = util.get_tab_name(tabid)
+  return string.format(' %s %d: %s ', icon, number, name)
+end
 
-	U.map ("i", "<C-d>", ":BufferLineCycleNext <CR>")
-	U.map ("i", "<C-a>", ":BufferLineCyclePrev <CR>")
-	
-	-- U.map ("n", "<C-q>",":BufferCloseAllButCurrent <CR>")
+local function tab_label_no_fallback(tabid, active)
+  local icon = active and '' or ''
+  local fallback = function()
+    return ''
+  end
+  local number = vim.api.nvim_tabpage_get_number(tabid)
+  local name = util.get_tab_name(tabid, fallback)
+  if name == '' then
+    return string.format(' %s %d ', icon, number)
+  end
+  return string.format(' %s %d: %s ', icon, number, name)
+end
 
-require('bufferline').setup {
-  options = {
-    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
-    -- NOTE: this plugin is designed with this icon in mind,
-    -- and so changing this is NOT recommended, this is intended
-    -- as an escape hatch for people who cannot bear it for whatever reason
-    indicator_icon = '▎',
-    buffer_close_icon = '',
-    modified_icon = '●',
-    close_icon = '',
-    left_trunc_marker = '',
-    right_trunc_marker = '',
-    --- name_formatter can be used to change the buffer's label in the bufferline.
-    --- Please note some names can/will break the
-    --- bufferline so use this at your discretion knowing that it has
-    --- some limitations that will *NOT* be fixed.
-    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-      -- remove extension from markdown files for example
-      if buf.name:match('%.md') then
-        return vim.fn.fnamemodify(buf.name, ':t:r')
-      end
-    end,
-    max_name_length = 18,
-    max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-    tab_size = 18,
-    diagnostics = "nvim_lsp",
-    diagnostics_update_in_insert = false,
-	diagnostics_indicator = function(count, level, diagnostics_dict, context)
-		local icon = level:match("error") and " " or " "
-		return " " .. icon .. count
-	end,
-    -- NOTE: this will be called a lot so don't do any heavy processing here
-    offsets = {
-			{
-				filetype = "NvimTree", 
-				text = "File Explorer", 
-				text_align = "center"
+local function win_label(winid, top)
+  local icon = top and '' or ''
+  local fname = require("tabby.filename").tail(winid)
+  local extension = vim.fn.fnamemodify(fname, ':e')
+  local fileIcon = require'nvim-web-devicons'.get_icon(filename, extension)
+  local buid = vim.api.nvim_win_get_buf(winid)
+  local is_modified = vim.api.nvim_buf_get_option(buid, 'modified')
+  local modifiedIcon = is_modified and '' or ''
+  return string.format(' %s  %s %s %s', icon, fileIcon, filename.unique(winid), modifiedIcon)
+end
+
+local function buffer_render (bufid, is_current)
+	local buftype = vim.bo[bufid].buftype
+	local modified = vim.bo[bufid].modified
+	local modified_icon = modified and '' or ' '
+	local path = vim.fn.bufname(bufid);
+	local extension = vim.fn.fnamemodify(path, ":e")
+	local filename = vim.fn.fnamemodify(path, ":t")
+	local fileicon = require'nvim-web-devicons'.get_icon (filename, extension, { default = true})
+	local buf_name = ' ' .. fileicon .. ' ' .. filename ..' ' .. modified_icon .. ' '
+	local buf_color = is_current and active_tab_hl or inactive_tab_hl
+	return {
+		type = 'text',
+		text = {
+			string.format(' %s ', buf_name) ,
+				hl = buf_color,
+			}
+	}
+end
+----
+
+local function gitBranch()
+	local cmd = io.popen('git branch --show-current 2> /dev/null')
+	local branch = cmd:read("*l") or cmd:read("*a")
+	cmd:close()
+
+	if branch ~= "" then
+		return '  ' .. branch .. ' '
+	else
+		return ''
+	end
+end
+
+local components = function()
+	local coms = {
+		{
+			type = 'text',
+			text = {
+				fileIcon,
+				hl = { fg = hl_tabline_sel.fg, bg = hl_tabline_sel.bg, style = 'bold' },
+			},
+		},
+		{
+			type = 'text',
+			text = {
+				' ',
+				hl = 'TabLineFill'
 			}
 		},
-    show_buffer_icons = true, -- disable filetype icons for buffers
-    show_buffer_close_icons = true,
-    show_close_icon = true,
-    show_tab_indicators = true,
-    persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    -- can also be a table containing 2 custom separators
-    -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thin",
-    enforce_regular_tabs = true,
-    always_show_bufferline = true,
-    sort_by = 'id'
-  }
+	}
+	local tabs = vim.api.nvim_list_tabpages()
+	local current_tab = vim.api.nvim_get_current_tabpage()
+	for _, tabid in ipairs(tabs) do
+		if tabid == current_tab then
+			table.insert(coms, {
+				type = 'tab',
+				tabid = tabid,
+				label = {
+					'  ' .. vim.api.nvim_tabpage_get_number(tabid) .. '  ',
+					hl = active_tab_hl
+				},
+			})
+		end
+		if tabid ~= current_tab then
+			table.insert(coms, {
+				type = 'tab',
+				tabid = tabid,
+				label = {
+					'  ' .. vim.api.nvim_tabpage_get_number(tabid) .. '  ',
+					hl = inactive_tab_hl
+				},
+			})
+		end
+	end
+	table.insert(coms,
+		{
+			type = 'text',
+			text = {
+				' ',
+				hl = 'TabLineFill'
+			}
+		}
+	)
+	table.insert(coms, { type = 'spring' } )
+	local cur_bufid = vim.api.nvim_get_current_buf()
+	for _, bufid in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_valid(bufid) and vim.bo[bufid].buflisted then
+			-- local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufid), ':~:.')
+			local is_current = false;
+			if bufid == cur_bufid then
+				is_current = true
+			end
+			local buf_render = buffer_render (bufid,is_current)
+			-- local focus_win = vim.api.nvim_tabpage_get_win(tabid)
+			-- local filename = require("tabby.filename").tail(focus_win)
+			-- local extension =  vim.fn.fnamemodify(name, ':t')
+			-- local icon = require'nvim-web-devicons'.get_icon(filename, extension)
+			-- print (extension)
+				table.insert(coms, buf_render)
+			table.insert(coms,
+				{
+					type = 'text',
+					text = {
+						' ',
+						hl = 'TabLineFill'
+					}
+				}
+			)
+		end
+	end
+	table.insert(coms,
+		{
+			type = 'text',
+			text = {
+				gitBranch,
+				hl = { fg = hl_tabline_sel.fg, bg = hl_tabline_sel.bg, style = 'bold' },
+			},
+		}
+	)
+	return coms
+end
+
+require('tabby').setup{
+	components = components,
 }
+
 
