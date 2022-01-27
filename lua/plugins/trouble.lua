@@ -9,9 +9,6 @@ function M.config()
 		auto_fold = false, -- automatically fold a file trouble list at creation
 		auto_close = false,
 	}
-	require("todo-comments").setup {
-
-	}
 
 	-- Lua
 	-- vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",

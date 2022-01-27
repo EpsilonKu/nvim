@@ -11,7 +11,7 @@ return require("packer").startup(
         -- {{ keybinding stuff
         use {
             "folke/which-key.nvim",
-            config = ("plugins._whichkey").config
+            config = ("plugins.whichkey").config
         }
 		use {
 			"stevearc/dressing.nvim",
@@ -22,7 +22,7 @@ return require("packer").startup(
 		use {
 			"nanozuki/tabby.nvim",
             config = function()
-                require("plugins._barbar")
+                require("plugins.tabby")
             end
 		}
 		use {
@@ -53,7 +53,7 @@ require("better_escape").setup {
         -- }
         use {
             "mhartington/formatter.nvim",
-    	    config = require("plugins._formatter").config
+    	    config = require("plugins.formatter").config
         }
 		use {
 			"numToStr/Comment.nvim",
@@ -120,7 +120,7 @@ require("better_escape").setup {
         use {
             -- colorscheme
             "savq/melange",
-            config = require("plugins._theme").config,
+            config = require("plugins.theme").config,
 			requires = {
             	"rktjmp/lush.nvim"
 			}	
@@ -135,28 +135,21 @@ require("better_escape").setup {
         use {
             "lukas-reineke/indent-blankline.nvim",
             config = function()
-                require("plugins._indent")
+                require("plugins.indent")
             end
         }
         use {
             -- status line
             "nvim-lualine/lualine.nvim",
-            config = require("plugins._lualine").config
+            config = require("plugins.lualine").config
         }
         use {
             -- starting screen
             "goolord/alpha-nvim",
             config = function()
-                require("plugins._dashboard")
+                require("plugins.alpha")
             end
         }
-        -- use {
-        --     "akinsho/bufferline.nvim",
-        --     requires = "kyazdani42/nvim-web-devicons",
-        --     config = function()
-        --         require("plugins._barbar")
-        --     end
-        -- }
         -- use {
         -- "sidebar-nvim/sidebar.nvim",
         -- rocks = {"luatz"},
@@ -165,7 +158,7 @@ require("better_escape").setup {
         use {
             "kyazdani42/nvim-tree.lua",
             config = function()
-                require("plugins._tree")
+                require("plugins.tree")
             end
         }
         -- use {
@@ -187,7 +180,7 @@ require("better_escape").setup {
         }
         use {
             "windwp/nvim-spectre",
-            config = require("plugins._spectre").config,
+            config = require("plugins.spectre").config,
             require = {
                 "nvim-lua/plenary.nvim"
             }
@@ -195,23 +188,17 @@ require("better_escape").setup {
         -- }}
 
         -- {{ integration
-        --	use {
-        --		'vhyrro/neorg',
-        --		config = require("plugins._neorg").config
-        --	}
-        use {
-            "chrisbra/recover.vim"
-        }
-        use {
-            "lambdalisue/suda.vim"
-        }
+        -- use {
+        -- 	'vhyrro/neorg',
+        -- 	config = require("plugins.neorg").config
+        -- }
         use {
             "sindrets/diffview.nvim"
         }
         use {
             -- terminal in neovim
             "voldikss/vim-floaterm",
-            config = require("plugins._floaterm").config
+            config = require("plugins.floaterm").config
         }
         -- use {
         -- 	'weilbith/nvim-floating-tag-preview',
@@ -241,7 +228,7 @@ require("better_escape").setup {
                 }
             },
             config = function()
-                require("plugins._telescope")
+                require("plugins.telescope")
             end
         }
         use {
@@ -256,7 +243,7 @@ require("better_escape").setup {
             run = {
                 ":TSUpdate"
             },
-            config = require("plugins._treesitter").config
+            config = require("plugins.treesitter").config
         }
         use {
             "p00f/nvim-ts-rainbow"
@@ -273,7 +260,7 @@ require("better_escape").setup {
         use {
             "neovim/nvim-lspconfig",
             config = function()
-                require("plugins._lsp")
+                require("plugins.lsp.lsp")
             end
         }
         use {
@@ -309,16 +296,24 @@ require("better_escape").setup {
             "hrsh7th/nvim-cmp",
             config = function()
                 -- your config
-                require("plugins._compe")
+                require("plugins.cmp")
             end
         }
 
+		use {
+			"folke/trouble.nvim",
+			config = function()
+				require("plugins.trouble")
+			end
+		}
         use {
             "folke/todo-comments.nvim",
             requires = {
                 "folke/trouble.nvim"
             },
-            config = require("plugins._lsp-trouble").config
+            config = function ()
+				require ("plugins.todo-comments")
+			end
         }
         use {
             "mfussenegger/nvim-jdtls"
@@ -331,7 +326,7 @@ require("better_escape").setup {
                 "nvim-telescope/telescope-dap.nvim"
             },
             config = function()
-                require("plugins._dap")
+                require("plugins.dap")
             end
         }
         -- }}
