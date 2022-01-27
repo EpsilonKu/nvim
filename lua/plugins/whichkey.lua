@@ -1,8 +1,3 @@
-
-local M = {}
-
-function M.config()
-	local g = vim.g
 	 require("which-key").setup {
 		icons = {
 			breadcrumb = "", -- symbol used in the command line area that shows your active key combo
@@ -10,7 +5,4 @@ function M.config()
 			group = "祐", -- symbol prepended to a group
 		},
 	}
-end
-
-return M
 

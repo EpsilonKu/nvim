@@ -1,10 +1,3 @@
-    local g = vim.g
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-    -- vim.g.nvim_tree_update_cwd = 1
-    -- vim.g.nvim_tree_respect_buf_cwd = 1
     require("project_nvim").setup {
         manual_mode = false,
         -- Methods of detecting the root directory. **"lsp"** uses the native neovim
@@ -61,20 +54,6 @@
         }
     )
 
-    require "lspconfig".html.setup {
-        capabilities = capabilities,
-		   init_options = {
-      configurationSection = { "html", "css", "javascript" },
-      embeddedLanguages = {
-        css = true,
-        javascript = true
-      }
-    }
-    }
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-	require'lspconfig'.cmake.setup{}
     
 	local saga = require "lspsaga"
     saga.init_lsp_saga {
@@ -89,6 +68,5 @@
         },
         definition_preview_icon = "  "
     }
-    require "lspconfig".clangd.setup {}
-require'lspconfig'.vala_ls.setup{}
+
 

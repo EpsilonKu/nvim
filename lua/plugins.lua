@@ -11,7 +11,9 @@ return require("packer").startup(
         -- {{ keybinding stuff
         use {
             "folke/which-key.nvim",
-            config = ("plugins.whichkey").config
+            config = function ()
+				require("plugins.whichkey")
+			end
         }
 		use {
 			"stevearc/dressing.nvim",
@@ -28,19 +30,19 @@ return require("packer").startup(
 		use {
 			"max397574/better-escape.nvim",
 			config = function()
--- lua, default settings
-require("better_escape").setup {
-    mapping = {"jj"}, -- a table with mappings to use
-    timeout = 500, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-    clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-    keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
-}
+				-- lua, default settings
+				require("better_escape").setup {
+					mapping = {"jj"}, -- a table with mappings to use
+					timeout = 500, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+					clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+					keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+				}
 			end
 		}
 		use {
 			"LinArcX/telescope-command-palette.nvim"
 		}
-        use {
+    	use {
             "blackcauldron7/surround.nvim",
             config = function()
                 require "surround".setup {mappings_style = "sandwich"}
@@ -261,6 +263,7 @@ require("better_escape").setup {
             "neovim/nvim-lspconfig",
             config = function()
                 require("plugins.lsp.lsp")
+				require("plugins.lsp.servers")
             end
         }
         use {
