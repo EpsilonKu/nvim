@@ -1,7 +1,3 @@
-local M = {}
-
-function M.config()
-	local g = vim.g
 	require("todo-comments").setup {
 		signs = true, -- show icons in the signs column
 		keywords = {
@@ -29,7 +25,3 @@ function M.config()
 			default = { "Identifier", "#7C3AED" },
 		},
 	}
-end
-
-return M
-

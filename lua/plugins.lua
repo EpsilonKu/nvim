@@ -104,17 +104,13 @@ return require("packer").startup(
     --         end
     --     }
         use {
-            "folke/persistence.nvim",
-            event = "BufReadPre", -- this will only start session saving when an actual file was opened
-            module = "persistence",
+            "shatur/neovim-session-manager",
             config = function()
-                require("persistence").setup(
-                    {
-                        dir = vim.fn.expand(vim.fn.stdpath("config") .. "/sessions/"), -- directory where session files are saved
-                        options = {"buffers", "curdir", "tabpages"} -- sessionoptions used for saving
-                    }
-                )
-            end
+				require("plugins.session-manager")
+            end,
+			requires ={
+				"nvim-lua/plenary.nvim"
+			}
         }
         -- }}
 
@@ -122,10 +118,12 @@ return require("packer").startup(
         use {
             -- colorscheme
             "savq/melange",
-            config = require("plugins.theme").config,
+            config = function()
+				require("plugins.theme")
+			end,
 			requires = {
             	"rktjmp/lush.nvim"
-			}	
+			}
         }
         use {
             "andweeb/presence.nvim",
