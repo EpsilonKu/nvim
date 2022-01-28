@@ -97,12 +97,6 @@ return require("packer").startup(
         use {
             "simrat39/symbols-outline.nvim"
         }
-    --     use {
-    --         "ldelossa/calltree.nvim",
-    --         config = function()
-				-- require('calltree').setup({})
-    --         end
-    --     }
         use {
             "shatur/neovim-session-manager",
             config = function()
@@ -112,6 +106,15 @@ return require("packer").startup(
 				"nvim-lua/plenary.nvim"
 			}
         }
+		use {
+ 			'ldelossa/litee-calltree.nvim',
+			config = function ()
+				require("plugins.litee")
+			end,
+			requires = {
+				"ldelossa/litee.nvim"
+			}
+		}
         -- }}
 
         -- {{ interface
@@ -231,10 +234,13 @@ return require("packer").startup(
                 require("plugins.telescope")
             end
         }
-        use {
-            "nvim-telescope/telescope-fzy-native.nvim",
-            requires = {"romgrk/fzy-lua-native"}
-        }
+		use {
+			"nvim-telescope/telescope-frecency.nvim",
+			config = function()
+				require"telescope".load_extension("frecency")
+			end,
+			requires = {"tami5/sqlite.lua"}
+		}
         -- }}
 
         --{{ treesitter highlight

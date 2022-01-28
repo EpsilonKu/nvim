@@ -1,9 +1,6 @@
 
-	local U = require "utils"
-	local finders = require "telescope.builtin"
 	local actions = require "telescope.actions"
 	local sorters = require "telescope.sorters"
-	local wk = require("which-key")
 
 	local previewers = require('telescope.previewers')
 	local putils = require('telescope.previewers.utils')
@@ -31,9 +28,6 @@
                         ["<ESC>"] = actions.close,
                         ["<C-j>"] = actions.move_selection_next,
                         ["<C-k>"] = actions.move_selection_previous,
-                        ["<C-o>"] = function()
-                            return
-                        end,
                         ["<TAB>"] = actions.toggle_selection + actions.move_selection_next,
                         ["<C-s>"] = actions.send_selected_to_qflist,
                         ["<C-q>"] = actions.send_to_qflist
@@ -44,20 +38,20 @@
 				path_display = {shorten = 5 },
             },
             extensions = {
-                fzy_native = {
-                    override_file_sorter = true,
-                    override_generic_sorter = true
-                }
+frecency = {
+      show_scores = false,
+      show_unindexed = true,
+      ignore_patterns = {"*.git/*", "*/tmp/*"},
+      disable_devicons = false,
+      workspaces = {
+        ["conf"]    = "~/.config",
+      }
+    }
             }
         }
     )
 
-    require("telescope").load_extension("fzy_native")
 	require('telescope').load_extension('dap')
 
-    function TelescopeOpen(fn)
-        U.move_cursor_from_tree()
-        finders[fn]()
-    end
 
 

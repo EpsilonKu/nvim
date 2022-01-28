@@ -70,7 +70,7 @@ wk.register(
             w = {":lua vim.lsp.buf.workspace_symbol()<CR>", " Workspace symbol"},
             d = {":lua vim.lsp.buf.document_symbol()<CR>", " Document symbol"},
             r = {":lua require('lspsaga.rename').rename()<CR>", " Variable rename"},
-            d = {":lua require('navigator.diagnostics').show_diagnostic()<CR>", " Show all buffer diagnostic"},
+            s = {":lua require('navigator.diagnostics').show_diagnostic()<CR>", " Show all buffer diagnostic"},
             f = {":lua vim.lsp.buf.formatting()<CR>", "Format code with lsp"}
         },
         ["<Space>d"] = {
@@ -115,7 +115,8 @@ wk.register(
             c = {":lua require('telescope.builtin').live_grep()<CR>", "  Telescope live grep"},
             d = {"<CMD>lua TelescopeOpen('oldfiles')<CR>", "  Telescope buffer history"},
             e = {":lua require('telescope.builtin').help_tags()<CR>", "  Telescope help tags"},
-            r = {":lua require('spectre').open()<CR>", " Search and Replace"}
+            r = {":lua require('spectre').open()<CR>", " Search and Replace"},
+			f = {":lua require('telescope').extensions.frecency.frecency()<CR>", "Telescope frecency"}
         }
     }
 )
