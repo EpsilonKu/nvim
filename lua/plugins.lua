@@ -39,9 +39,6 @@ return require("packer").startup(
 				}
 			end
 		}
-		use {
-			"LinArcX/telescope-command-palette.nvim"
-		}
     	use {
             "blackcauldron7/surround.nvim",
             config = function()
@@ -234,6 +231,21 @@ return require("packer").startup(
                 require("plugins.telescope")
             end
         }
+		use {
+			"LinArcX/telescope-command-palette.nvim"
+		}
+use {
+  "AckslD/nvim-neoclip.lua",
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+{'tami5/sqlite.lua', module = 'sqlite'},
+  },
+  config = function()
+    require('neoclip').setup({
+enable_persistant_history = false,
+				})
+  end,
+}
 		use {
 			"nvim-telescope/telescope-frecency.nvim",
 			config = function()

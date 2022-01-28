@@ -113,10 +113,11 @@ wk.register(
             a = {":lua require('telescope.builtin').find_files()<CR>", "  Telescope find file"},
             b = {":lua require('telescope.builtin').buffers()<CR>", " ﬘ Telescope list buffer"},
             c = {":lua require('telescope.builtin').live_grep()<CR>", "  Telescope live grep"},
-            d = {"<CMD>lua TelescopeOpen('oldfiles')<CR>", "  Telescope buffer history"},
+            d = {":lua require('telescope').extensions.neoclip.default()<CR>", "  Telescope clip"},
             e = {":lua require('telescope.builtin').help_tags()<CR>", "  Telescope help tags"},
             r = {":lua require('spectre').open()<CR>", " Search and Replace"},
 			f = {":lua require('telescope').extensions.frecency.frecency()<CR>", "Telescope frecency"}
+
         }
     }
 )
