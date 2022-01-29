@@ -4,6 +4,53 @@ vim.cmd [[ autocmd bufwritepost plugins.lua PackerCompile ]]
 return require("packer").startup(function()
     use {"wbthomason/packer.nvim", opt = true}
 
+    -- {{ neovim lsp
+    use {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require("plugins.lsp.lsp")
+            require("plugins.lsp.servers")
+        end
+    }
+    use {"tjdevries/nlua.nvim"}
+    use {"onsails/lspkind-nvim"}
+    use {"ray-x/lsp_signature.nvim"}
+    use {"tami5/lspsaga.nvim"}
+    use {"nvim-lua/lsp-status.nvim"}
+    use {"ahmedkhalf/project.nvim"}
+    use {'hrsh7th/vim-vsnip'}
+    use {'hrsh7th/vim-vsnip-integ'}
+    use {"rafamadriz/friendly-snippets"}
+    use {"hrsh7th/cmp-nvim-lsp"}
+    use {"hrsh7th/cmp-path", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
+    use {
+        "hrsh7th/nvim-cmp",
+        config = function()
+            -- your config
+            require("plugins.cmp")
+        end
+    }
+
+    use {
+        "folke/trouble.nvim",
+        config = function() require("plugins.trouble") end
+    }
+    use {
+        "folke/todo-comments.nvim",
+        requires = {"folke/trouble.nvim"},
+        config = function() require("plugins.todo-comments") end
+    }
+    use {"mfussenegger/nvim-jdtls"}
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {
+            "mfussenegger/nvim-dap", "theHamsta/nvim-dap-virtual-text",
+            "nvim-telescope/telescope-dap.nvim"
+        },
+        config = function() require("plugins.dap") end
+    }
+    -- }}
     -- {{ keybinding stuff
     use {
         "folke/which-key.nvim",
@@ -47,14 +94,44 @@ return require("packer").startup(function()
         config = function() require("plugins.session-manager") end,
         requires = {"nvim-lua/plenary.nvim"}
     }
+    use {'ldelossa/litee.nvim'}
+    use {'ldelossa/litee-filetree.nvim'}
+    use {'ldelossa/litee-symboltree.nvim'}
+    use {'ldelossa/litee-calltree.nvim'}
     use {
-        'ldelossa/litee-calltree.nvim',
-        config = function() require("plugins.litee") end,
-        requires = {"ldelossa/litee.nvim"}
+        'ldelossa/litee-bookmarks.nvim',
+        config = function() require("plugins.litee") end
     }
     -- }}
 
     -- {{ interface
+    use {
+        "beauwilliams/focus.nvim",
+        config = function() require("focus").setup() end
+    }
+    use {
+        'https://gitlab.com/yorickpeterse/nvim-window.git',
+        config = function()
+
+            require('nvim-window').setup({
+                -- The characters available for hinting windows.
+                chars = {
+					'a','s','d','f','j','k','l','g','h'
+                },
+
+                -- A group to use for overwriting the Normal highlight group in the floating
+                -- window. This can be used to change the background color.
+                normal_hl = 'Normal',
+
+                -- The highlight group to apply to the line that contains the hint characters.
+                -- This is used to make them stand out more.
+                hint_hl = 'Bold',
+
+                -- The border style to use for the floating window.
+                border = 'single'
+            })
+        end
+    }
     use {
         -- colorscheme
         "savq/melange",
@@ -97,9 +174,6 @@ return require("packer").startup(function()
         "windwp/nvim-autopairs"
     }
     use {"windwp/nvim-ts-autotag"}
-    -- use {
-    --     "karb94/neoscroll.nvim"
-    -- }
     use {"epsilonku/fterm.nvim"}
     use {
         "windwp/nvim-spectre",
@@ -119,16 +193,6 @@ return require("packer").startup(function()
         "voldikss/vim-floaterm",
         config = require("plugins.floaterm").config
     }
-    -- use {
-    -- 	'weilbith/nvim-floating-tag-preview',
-    -- 	config = function()
-    --
-    -- 	end,
-    -- 	cmd = {'Ptag', 'Ptselect', 'Ptjump', 'Psearch', 'Pedit' },
-    -- }
-    -- use {
-    --     "pianocomposer321/consolation.nvim"
-    -- }
     use {"kyazdani42/nvim-web-devicons"}
     -- }}
 
@@ -168,48 +232,4 @@ return require("packer").startup(function()
     use {"David-Kunz/treesitter-unit"}
     -- }}
 
-    -- {{ neovim lsp
-    use {
-        "neovim/nvim-lspconfig",
-        config = function()
-            require("plugins.lsp.lsp")
-            require("plugins.lsp.servers")
-        end
-    }
-    use {"tjdevries/nlua.nvim"}
-    use {"onsails/lspkind-nvim"}
-    use {"ray-x/lsp_signature.nvim"}
-    use {"tami5/lspsaga.nvim"}
-    use {"nvim-lua/lsp-status.nvim"}
-    use {"ahmedkhalf/project.nvim"}
-    use {"hrsh7th/cmp-nvim-lsp"}
-    use {"hrsh7th/cmp-path", after = "nvim-cmp"}
-    use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
-    use {
-        "hrsh7th/nvim-cmp",
-        config = function()
-            -- your config
-            require("plugins.cmp")
-        end
-    }
-
-    use {
-        "folke/trouble.nvim",
-        config = function() require("plugins.trouble") end
-    }
-    use {
-        "folke/todo-comments.nvim",
-        requires = {"folke/trouble.nvim"},
-        config = function() require("plugins.todo-comments") end
-    }
-    use {"mfussenegger/nvim-jdtls"}
-    use {
-        "rcarriga/nvim-dap-ui",
-        requires = {
-            "mfussenegger/nvim-dap", "theHamsta/nvim-dap-virtual-text",
-            "nvim-telescope/telescope-dap.nvim"
-        },
-        config = function() require("plugins.dap") end
-    }
-    -- }}
 end)

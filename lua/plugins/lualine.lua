@@ -24,8 +24,8 @@ function M.config()
 	local lsp_status = require('lsp-status');
 	local config = {
     	indicator_errors = ' ',
-   		indicator_warnings = ' ',
-   		indicator_info = 'i ',
+		indicator_warnings = ' ',
+		indicator_info = 'i ',
     	indicator_hint = '?',
     	indicator_ok = ' ',
 		status_symbol = ''
