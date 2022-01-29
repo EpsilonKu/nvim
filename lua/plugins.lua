@@ -132,6 +132,11 @@ return require("packer").startup(function()
             })
         end
     }
+
+use {
+	"luukvbaal/stabilize.nvim",
+	config = function() require("stabilize").setup() end
+}
     use {
         -- colorscheme
         "savq/melange",
