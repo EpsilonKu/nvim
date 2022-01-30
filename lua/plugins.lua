@@ -115,9 +115,7 @@ return require("packer").startup(function()
 
             require('nvim-window').setup({
                 -- The characters available for hinting windows.
-                chars = {
-					'a','s','d','f','j','k','l','g','h'
-                },
+                chars = {'a', 's', 'd', 'f', 'j', 'k', 'l', 'g', 'h'},
 
                 -- A group to use for overwriting the Normal highlight group in the floating
                 -- window. This can be used to change the background color.
@@ -133,10 +131,10 @@ return require("packer").startup(function()
         end
     }
 
-use {
-	"luukvbaal/stabilize.nvim",
-	config = function() require("stabilize").setup() end
-}
+    use {
+        "luukvbaal/stabilize.nvim",
+        config = function() require("stabilize").setup() end
+    }
     use {
         -- colorscheme
         "savq/melange",
@@ -155,6 +153,11 @@ use {
         -- status line
         "nvim-lualine/lualine.nvim",
         config = require("plugins.lualine").config
+    }
+
+    use {
+        'numToStr/Navigator.nvim',
+        config = function() require('Navigator').setup() end
     }
     use {
         -- starting screen
