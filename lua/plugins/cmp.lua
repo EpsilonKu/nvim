@@ -10,6 +10,9 @@ require("nvim-autopairs").setup {
     autopairs = {enable = true},
     check_ts = false
 }
+vim.cmd [[
+set pumheight=10
+]]	
 
 local lspkind = require('lspkind')
 cmp.setup {
