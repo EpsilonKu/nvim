@@ -90,9 +90,13 @@ return require("packer").startup(function()
     }
     use {"simrat39/symbols-outline.nvim"}
     use {
-        "shatur/neovim-session-manager",
-        config = function() require("plugins.session-manager") end,
-        requires = {"nvim-lua/plenary.nvim"}
+        'rmagatti/auto-session',
+        config = function()
+            require('auto-session').setup {
+                log_level = 'info',
+                auto_session_suppress_dirs = {'~/', '~/Projects'}
+            }
+        end
     }
     use {'ldelossa/litee.nvim'}
     use {'ldelossa/litee-filetree.nvim'}
@@ -129,6 +133,20 @@ return require("packer").startup(function()
                 border = 'single'
             })
         end
+    }
+    use {
+        "danymat/neogen",
+        config = function() require('neogen').setup {enabled = true} end,
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
+    use {
+        "nvim-neorg/neorg",
+        setup = vim.cmd(
+            "autocmd BufRead,BufNewFile *.norg setlocal filetype=norg"),
+        after = {"nvim-treesitter"}, -- you may also specify telescope
+        ft = "norg",
+        config = function() require("plugins.neorg") end,
+        requires = "nvim-lua/plenary.nvim"
     }
 
     use {
