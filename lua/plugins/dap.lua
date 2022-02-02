@@ -1,5 +1,3 @@
-local U = require "utils"
-local wk = require("which-key")
 local dap = require("dap")
 
 require("dapui").setup(
