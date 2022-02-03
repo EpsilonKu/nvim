@@ -33,8 +33,8 @@ U.map("v", "<C-S-V>", "p")
 U.map("n", "<C-d>", ":bnext <CR>")
 U.map("n", "<C-a>", ":bprevious<CR>")
 
-U.map("i", "<C-d>", ":bnext <CR>")
-U.map("i", "<C-a>", ":bprevious<CR>")
+U.map("i", "<C-d>", "<Esc>:bnext <CR> i")
+U.map("i", "<C-a>", "<Esc>:bprevious<CR> i")
 wk.register({
     ["<Space>s"] = {
         name = "+Common",
