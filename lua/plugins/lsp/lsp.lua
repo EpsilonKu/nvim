@@ -1,3 +1,10 @@
+vim.lsp.handlers["textDocument/publishDiagnostics"] = -- NOTE: This is LSP config
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = true,
+        virtual_text = {spacing = 4},
+        update_in_insert = true -- NOTE: To enable LSP on insert mode
+    })
+
 require("project_nvim").setup {
     manual_mode = false,
     -- Methods of detecting the root directory. **"lsp"** uses the native neovim
