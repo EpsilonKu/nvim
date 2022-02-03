@@ -14,7 +14,17 @@ return require("packer").startup(function()
     }
     use {"tjdevries/nlua.nvim"}
     use {"onsails/lspkind-nvim"}
-    use {"ray-x/lsp_signature.nvim"}
+    use {
+        "ray-x/lsp_signature.nvim",
+        config = function()
+            local cfg = {
+                bind = true, -- This is mandatory, otherwise border config won't get registered.
+				hint_prefix = "🐼 ",
+                handler_opts = {border = "rounded"}
+            } -- add you config here
+            require"lsp_signature".setup(cfg)
+        end
+    }
     use {"tami5/lspsaga.nvim"}
     use {"nvim-lua/lsp-status.nvim"}
     use {"ahmedkhalf/project.nvim"}
@@ -92,6 +102,9 @@ return require("packer").startup(function()
     use {
         'rmagatti/auto-session',
         config = function()
+			vim.cmd [[
+			let g:auto_session_pre_save_cmds = ["tabdo NERDTreeClose"]
+			]]
             require('auto-session').setup {
                 log_level = 'info',
                 auto_session_suppress_dirs = {'~/', '~/Projects'}
