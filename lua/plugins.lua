@@ -19,7 +19,7 @@ return require("packer").startup(function()
         config = function()
             local cfg = {
                 bind = true, -- This is mandatory, otherwise border config won't get registered.
-				hint_prefix = "🐼 ",
+                hint_prefix = "🐼 ",
                 handler_opts = {border = "rounded"}
             } -- add you config here
             require"lsp_signature".setup(cfg)
@@ -102,13 +102,18 @@ return require("packer").startup(function()
     use {
         'rmagatti/auto-session',
         config = function()
-			vim.cmd [[
-			let g:auto_session_pre_save_cmds = ["tabdo NERDTreeClose"]
-			]]
-            require('auto-session').setup {
-                log_level = 'info',
-                auto_session_suppress_dirs = {'~/', '~/Projects'}
-            }
+			require("plugins.session")
+        end
+    }
+    use {
+        "rmagatti/session-lens",
+        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+        config = function()
+            require('session-lens').setup({
+                prompt_title = 'YEAH SESSIONS',
+                path_display = {'shorten'},
+                previewer = true
+            })
         end
     }
     use {'ldelossa/litee.nvim'}

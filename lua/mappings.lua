@@ -39,6 +39,7 @@ wk.register({
     ["<Space>s"] = {
         name = "+Common",
         s = {":SymbolsOutline<CR>", " Symbol Outline Toggle"},
+		f = {":lua require('session-lens').search_session()<CR>", " Session list"},
         a = {":NvimTreeToggle<CR>", " File Tree Toggle"},
         t = {":lua require('FTerm').close()<CR>", "  Terminal Close Float"},
         o = {":lua require('FTerm').open()<CR>", "  Terminal Open Float"},
