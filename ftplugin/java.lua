@@ -36,6 +36,9 @@ config.settings = settings
 config.on_init = on_init
 config.cmd = {
     "/usr/lib/jvm/java-11-openjdk/bin/java",
+	'-Dcatalina.base="' .. home .. '/.local/bin/wtp/.plugins/org.eclipse.wst.server.core/tmp0"',
+    '-Dcatalina.home="' .. home .. '/.local/bin/apache-tomcat"',
+    '-Dwtp.deploy="' .. home .. '/.local/bin/wtp/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps"',
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product", "-Dlog.protocol=true",
