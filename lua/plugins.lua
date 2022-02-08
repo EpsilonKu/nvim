@@ -101,8 +101,16 @@ return require("packer").startup(function()
     use {"simrat39/symbols-outline.nvim"}
     use {
         'rmagatti/auto-session',
+        config = function() require("plugins.session") end
+    }
+    use {
+        "nanotee/sqls.nvim",
         config = function()
-			require("plugins.session")
+            require('lspconfig').sqls.setup {
+                on_attach = function(client, bufnr)
+                    require('sqls').on_attach(client, bufnr)
+                end
+            }
         end
     }
     use {
