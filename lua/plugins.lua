@@ -113,6 +113,12 @@ return require("packer").startup(function()
             }
         end
     }
+    -- use {
+    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --     config = function()
+    --         require("lsp_lines").register_lsp_virtual_lines()
+    --     end
+    -- } NOTE:I guess it need to be disabled any virtual text plugins
     use {
         "rmagatti/session-lens",
         requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
@@ -263,7 +269,7 @@ return require("packer").startup(function()
             {'tami5/sqlite.lua', module = 'sqlite'}
         },
         config = function()
-            require('neoclip').setup({enable_persistant_history = false})
+            require('neoclip').setup({enable_persistent_history = false})
         end
     }
     use {
