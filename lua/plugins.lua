@@ -273,6 +273,10 @@ return require("packer").startup(function()
         end
     }
     use {
+        "gbprod/cutlass.nvim",
+        config = function() require("cutlass").setup({cut_key = "c"}) end
+    }
+    use {
         "nvim-telescope/telescope-frecency.nvim",
         config = function() require"telescope".load_extension("frecency") end,
         requires = {"tami5/sqlite.lua"}
