@@ -13,7 +13,7 @@ function M.config()
 			disable = {}
 		},
 		indent = {
-			 enable = true,
+			enable = true,
 		}
 	}
 	require('nvim-ts-autotag').setup()

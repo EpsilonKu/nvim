@@ -89,6 +89,11 @@ return require("packer").startup(function()
             require"surround".setup {mappings_style = "sandwich"}
         end
     }
+
+    use {
+        "gbprod/cutlass.nvim",
+        config = function() require("cutlass").setup({cut_key = "c"}) end
+    }
     use {
         "numToStr/Comment.nvim",
         config = function() require('Comment').setup() end
@@ -272,10 +277,7 @@ return require("packer").startup(function()
             require('neoclip').setup({enable_persistent_history = false})
         end
     }
-    use {
-        "gbprod/cutlass.nvim",
-        config = function() require("cutlass").setup({cut_key = "c"}) end
-    }
+	
     use {
         "nvim-telescope/telescope-frecency.nvim",
         config = function() require"telescope".load_extension("frecency") end,
