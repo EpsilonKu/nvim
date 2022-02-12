@@ -34,12 +34,11 @@ opt('o', 'splitbelow', true)                          -- Put new windows below c
 opt('o', 'splitright', true)                          -- Put new windows right of current
 opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
-opt('o', 'timeoutlen', 0)
+opt('o', 'timeoutlen', 500)
 opt('o', 'encoding', 'UTF-8')
 opt('o', 'clipboard', 'unnamedplus')
 opt('o', 'pastetoggle', '<F10>')
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
--- opt('w', 'listchars', 'eol:↴,tab:»·,trail:.,extends:>,precedes:<')
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
 
