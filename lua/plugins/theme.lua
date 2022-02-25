@@ -1,22 +1,36 @@
 -- Lua initialization file
-vim.opt.termguicolors = true
-vim.cmd('set background=dark')
-vim.cmd [[colorscheme melange]]
+require('rose-pine').setup({
+	---@usage 'main'|'moon'
+	dark_variant = 'moon',
+	bold_vert_split = false,
+	dim_nc_background = false,
+	disable_background = false,
+	disable_float_background = false,
+	disable_italics = false,
+	---@usage string hex value or named color from rosepinetheme.com/palette
+	groups = {
+		border = 'highlight_med',
+		comment = 'muted',
+		link = 'iris',
+		punctuation = 'subtle',
 
--- local lush = require('lush')
--- local harbour = require("lush")(require("melange"))
--- local hsluv = lush.hsluv
---
--- local spec = lush.extends({harbour}).with(function()
---   return {
--- -- #B85B5E
--- CursorLine ={hsluv (184,91,94)}
---   }
--- end)
---
--- -- You may prefer to put this in its own module, shown on _G for brevity.
--- _G.customise_colorscheme = function()
---   -- now we can apply the modified spec.
---   lush(spec)
--- end
---
+		error = 'love',
+		hint = 'iris',
+		info = 'foam',
+		warn = 'gold',
+
+		headings = {
+			h1 = 'iris',
+			h2 = 'foam',
+			h3 = 'rose',
+			h4 = 'gold',
+			h5 = 'pine',
+			h6 = 'foam',
+		}
+		-- or set all headings at once
+		-- headings = 'subtle'
+	}
+})
+
+-- set colorscheme after options
+vim.cmd('colorscheme rose-pine')
