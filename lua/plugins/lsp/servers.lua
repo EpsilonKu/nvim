@@ -30,7 +30,11 @@ lsp.sumneko_lua.setup({
                 version = 'LuaJIT',
                 path = U.get_luajit_path()
             },
-            diagnostics = {globals = {'vim', 'dump', 'use'}},
+            diagnostics = {
+                globals = {
+                    'vim', 'dump', 'use', "awesome", "screen", "tag", "client"
+                }
+            },
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = U.get_nvim_rtp_path()
@@ -55,4 +59,10 @@ require"lspconfig".clangd.setup {}
 
 require'lspconfig'.vala_ls.setup {}
 
-require'lspconfig'.vuels.setup{}
+require'lspconfig'.vuels.setup {}
+
+require('lspconfig').sqls.setup{
+    on_attach = function(client, bufnr)
+        require('sqls').on_attach(client, bufnr)
+    end
+}
