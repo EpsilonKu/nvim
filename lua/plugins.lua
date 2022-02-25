@@ -95,8 +95,8 @@ return require("packer").startup(function()
         config = function() require("cutlass").setup({cut_key = "c"}) end
     }
     use {
-        "numToStr/Comment.nvim",
-        config = function() require('Comment').setup() end
+        'b3nj5m1n/kommentary',
+        config = function() require("plugins.comment") end
     }
     use {"sbdchd/neoformat", config = function() end}
     use {
@@ -109,15 +109,29 @@ return require("packer").startup(function()
         config = function() require("plugins.session") end
     }
     use {
-        "nanotee/sqls.nvim",
+        "mvllow/modes.nvim",
         config = function()
-            require('lspconfig').sqls.setup {
-                on_attach = function(client, bufnr)
-                    require('sqls').on_attach(client, bufnr)
-                end
-            }
+            -- Pass colors through setup
+            require('modes').setup({
+                colors = {
+                    copy = "#f5c359",
+                    delete = "#c75c6a",
+                    insert = "#78ccc5",
+                    visual = "#9745be"
+                },
+                line_opacity = 0.1,
+                focus_only = false
+            })
+
+            -- Or use highlight groups (useful for themes)
+            vim.cmd('hi ModesCopy guibg=#f5c359')
+            vim.cmd('hi ModesDelete guibg=#c75c6a')
+            vim.cmd('hi ModesInsert guibg=#78ccc5')
+            vim.cmd('hi ModesVisual guibg=#9745be')
         end
     }
+    use {"nanotee/sqls.nvim"}
+
     -- use {
     --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     --     config = function()
@@ -192,9 +206,8 @@ return require("packer").startup(function()
     }
     use {
         -- colorscheme
-        "savq/melange",
-        config = function() require("plugins.theme") end,
-        requires = {"rktjmp/lush.nvim"}
+        "rose-pine/neovim",
+        config = function() require("plugins.theme") end
     }
     use {
         "andweeb/presence.nvim",
@@ -277,7 +290,7 @@ return require("packer").startup(function()
             require('neoclip').setup({enable_persistent_history = false})
         end
     }
-	
+
     use {
         "nvim-telescope/telescope-frecency.nvim",
         config = function() require"telescope".load_extension("frecency") end,
