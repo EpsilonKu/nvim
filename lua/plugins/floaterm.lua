@@ -17,11 +17,6 @@ function M.config()
     },
     border = 'single' -- or 'double'
 	})
-	local map = vim.api.nvim_set_keymap
-	local opts = { noremap = true, silent = true }
-	local wk = require ("which-key")
-
-
 
 end
 
