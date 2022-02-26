@@ -6,9 +6,9 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 map('n', "<A-h>", "<CMD>lua require('Navigator').left()<CR>", opts)
-map('n', "<A-j>", "<CMD>lua require('Navigator').up()<CR>", opts)
-map('n', "<A-k>", "<CMD>lua require('Navigator').right()<CR>", opts)
-map('n', "<A-l>", "<CMD>lua require('Navigator').down()<CR>", opts)
+map('n', "<A-k>", "<CMD>lua require('Navigator').up()<CR>", opts)
+map('n', "<A-l>", "<CMD>lua require('Navigator').right()<CR>", opts)
+map('n', "<A-j>", "<CMD>lua require('Navigator').down()<CR>", opts)
 map('n', "<A-p>", "<CMD>lua require('Navigator').previous()<CR>", opts)
 
 map('i', "<C-h>", "<Left>", opts)
@@ -137,6 +137,10 @@ wk.register({
             ":lua require('telescope.builtin').find_files()<CR>",
             "  Telescope find file"
         },
+		s = {
+			":Telescope file_browser<CR>",
+			" Telescope file manager"
+		},
         b = {
             ":lua require('telescope.builtin').buffers()<CR>",
             " ﬘ Telescope list buffer"

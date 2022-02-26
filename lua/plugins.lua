@@ -296,6 +296,7 @@ return require("packer").startup(function()
         config = function() require"telescope".load_extension("frecency") end,
         requires = {"tami5/sqlite.lua"}
     }
+    use {'nvim-telescope/telescope-file-browser.nvim'}
     -- }}
 
     -- {{ treesitter highlight
@@ -304,7 +305,7 @@ return require("packer").startup(function()
         run = {":TSUpdate"},
         config = require("plugins.treesitter").config
     }
-    use {"p00f/nvim-ts-rainbow"}
+    -- use {"p00f/nvim-ts-rainbow"}
     use {"SmiteshP/nvim-gps"}
     use {"David-Kunz/treesitter-unit"}
     -- }}
