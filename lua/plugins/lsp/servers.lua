@@ -38,8 +38,7 @@ lsp.sumneko_lua.setup({
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = U.get_nvim_rtp_path()
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
+            }, -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {enable = false}
         }
     }
@@ -61,7 +60,17 @@ require'lspconfig'.vala_ls.setup {}
 
 require'lspconfig'.vuels.setup {}
 
-require('lspconfig').sqls.setup{
+-- require'lspconfig'.eslint.setup {
+    --[[ settings = {
+        codeActionsOnSave = {
+            mode = "all",
+            rules = {"!debugger", "!no-only-tests/*"}
+        },
+        autoFixOnSave = true
+    } ]]
+-- } TODO: Solve error
+
+require('lspconfig').sqls.setup {
     on_attach = function(client, bufnr)
         require('sqls').on_attach(client, bufnr)
     end

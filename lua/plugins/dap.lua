@@ -66,6 +66,95 @@ require("nvim-dap-virtual-text").setup {
     -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
 }
 
+
+
+--[[ dap.adapters.chrome = {
+    type = "executable",
+    command = "node",
+    args = {os.getenv("HOME") .. "/repositories/github.com/Microsoft/vscode-chrome-debug/out/src/chromeDebug.js"} 
+} ]]
+
+dap.adapters.firefox = {
+  type = 'executable',
+  command = 'node',
+  args = {os.getenv('HOME') .. '/.local/bin/vscode-firefox-debug/dist/adapter.bundle.js'},
+}
+
+dap.adapters.chrome = {
+    type = "executable",
+    command = "node",
+    args = {os.getenv("HOME") .. "/.local/bin/vscode-chrome-debug/out/src/chromeDebug.js"} 
+}
+
+local config_ff = {
+    type = 'firefox',
+    request = 'attach',
+    program = '${file}',
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = 'inspector',
+    port = 6080,
+  }
+
+local config_cc = {
+        type = "chrome",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector",
+        port = 9222,
+        webRoot = "${workspaceFolder}"
+}
+--[[ local config_node = {
+  name = 'Debug with Node',
+  type = 'node2',
+  request = 'launch',
+  program = '${file}',
+  cwd = vim.fn.getcwd(),
+  sourceMaps = true,
+  protocol = 'inspector',
+  console = 'integratedTerminal',
+} ]]
+
+dap.configurations.vue = { config_cc }
+dap.configurations.typescript = {config_cc}
+dap.configurations.javascript = {config_cc}
+
+--[[ dap.configurations.vue = {
+    {
+        type = "chrome",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector",
+        port = 9222,
+        webRoot = "${workspaceFolder}"
+    },
+  } ]]
+
+--[[ dap.configurations.vue = {
+    {
+        type = "firefox",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector",
+		url = 'http://localhost:8080',
+    },
+  }
+ ]]
+--[[ dap.configurations.javascript = {
+  name = 'Debug with Firefox',
+  type = 'firefox',
+  request = 'launch',
+  reAttach = true,
+  url = 'http://localhost:3000',
+  webRoot = '${workspaceFolder}',
+  firefoxExecutable = '/usr/bin/firefox'
+} ]]
 -- dap.defaults.fallback.external_terminal = {
 --     command = "/usr/bin/kitty",
 --     args = {"-e"}
